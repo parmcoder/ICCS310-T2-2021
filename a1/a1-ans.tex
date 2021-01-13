@@ -1,0 +1,257 @@
+% You should title the file with a .tex extension (hw1.tex, for example)
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
+	\noindent{\bf #1: #2} \vspace{0.5em}
+	\hrule \vspace{.10in}}
+\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
+
+\newcommand{\myname}{Possawat Sanorkam}
+\newcommand{\myemail}{possawat2017@hotmail.com}
+\newcommand{\myhwnum}{1}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+
+\pagestyle{fancyplain}
+\lhead{\fancyplain{}{\textbf{HW\myhwnum}}}      % Note the different brackets!
+\rhead{\fancyplain{}{\myname\\ \myemail}}
+\chead{\fancyplain{}{ICCS310}}
+
+\begin{document}
+	
+	\medskip                        % Skip a "medium" amount of space
+	% (latex determines what medium is)
+	% Also try: \bigskip, \littleskip
+	
+	\thispagestyle{plain}
+	\begin{center}                  % Center the following lines
+		{\Large ICCS310: Assignment \myhwnum} \\
+		\myname \\
+		\myemail \\
+		\today \\
+	\end{center}
+	
+	\question{1}{Review: Something About Sets} %don't delete yet:(}
+	
+	\part{1} Let $A_1, A_2, A_3$ be any sets from a universe $\mathcal{U}$. 
+	 {\em Prove that $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.}\\
+	
+	{\em Proof}: We want to show that $\overline{A_1 \cup A_2 \cup A_3} \subseteq \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$
+	and $\overline{A_1} \cap \overline{A_2} \cap \overline{A_3} \subseteq \overline{A_1 \cup A_2 \cup A_3} $
+	
+	Let $A_1, A_2, A_3$ be any three given sets. We'll first prove that
+	$\overline{A_1 \cup A_2 \cup A_3} \subseteq \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.
+	Let $x \in \overline{A_1 \cup A_2 \cup A_3}$. Then, $x \notin A_1 \cup A_2 \cup A_3$ by the definition of complement, so then $x \notin A_1$, $x \notin A_2$ and $x \notin A_3$, by the definition of union. This means that $x \in \overline{A_1}$, $x \in \overline{A_2}$, and $x \in \overline{A_3}$, by the definition of complement. 
+	Hence, $x \in \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$ 
+	since x is in $\overline{A_1} $, $ \overline{A_2} $, and $ \overline{A_3}$.
+
+	Also, we will show that $\overline{A_1} \cap \overline{A_2} \cap \overline{A_3} \subseteq \overline{A_1 \cup A_2 \cup A_3} $. Let $y \in \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$, so y is in $\overline{A_1} $, $ \overline{A_2} $, and $ \overline{A_3}$, by the definition of intersection. 
+	This means $y \notin A_1$, $y \notin A_2$, and $y \notin A_3$, by the definition of complement. It follows that $y \notin A_1 \cup A_2 \cup A_3$, and so $y \in \overline{A_1 \cup A_2 \cup A_3}$.
+	
+	In conclusion, $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.
+	
+	
+	\part{2} Let A and B be any sets from a universe $\mathcal{U}$. 
+	{\em Prove that $ \overline{A \cup B} = \overline{A} \cap \overline{B}$.}\\
+	
+	{\em Proof}: We want to show that $\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$
+	and $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B} $
+	
+	Let $A \text{ and } B$ be any two given sets. We'll first prove that
+	$\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$.
+	Let $x \in \overline{A \cup B}$. Then, $x \notin A \cup B$ by the definition of complement, so then $x \notin A$, and $x \notin B$, by the definition of union. This means that $x \in \overline{A}$, and $x \in \overline{B}$, by the definition of complement. 
+	Hence, $x \in \overline{A} \cap \overline{B}$ 
+	since x is in $\overline{A} $ and $ \overline{B}$.
+	
+	Also, we will show that $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B} $. Let $y \in \overline{A} \cap \overline{B}$, so y is in $\overline{A} $ and $ \overline{B}$, by the definition of intersection. 
+	This means $y \notin A$ and $y \notin B$, by the definition of complement. It follows that $y \notin A \cup B$, and so $y \in \overline{A \cup B}$.
+	
+	In conclusion, $ \overline{A \cup B} = \overline{A} \cap \overline{B}$.
+
+	
+	\question{2}{Prime and Irrational}
+	
+	\part{1} Let $p \geq 2$ be a prime and a be a positive integer. Prove that if $p  \text{ divides } a^2$, then $p \text{ divides } a$.\\
+	
+	{\em Proof}:
+	
+	\part{2} Prove that if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.\\
+	
+	{\em Proof}:
+	
+	\question{3}{Spacing}
+	\part{1} Prove {\em Theorem}:
+	Any $2^n$ by $2^n$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell
+	
+	Predicate : P(x) $\equiv$ $\forall x \geq 1,$ $2^x$ by $2^x$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell  \\
+	
+	Base case : P(1) $\equiv$ one of the basic 4 missing tiles perfectly fits 2 by 2 grid with one painted cell since there is one empty space left which is true\\
+	
+	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
+	P(x)  $\equiv$ missing tiles perfectly fits $2^x$ by $2^x$ grid with one painted cell\\
+	P(x+1) 	$\equiv$ missing tiles perfectly fits $2^{x+1}$ by $2^{x+1}$ grid with one painted cell\\
+	
+	Assume that each grid was filled up before having its tiles taken out by one for painting that cell. We can break it down to many $2*2$ grid which can fit at least one trimino according to P(1) Moreover, since P(1) is true, the size of the grid will always left an even number of empty space which is equal to $4^{x-1}$ which can be divided by 3 and left a remainder = 1\\
+	
+	The total missing tiles for $2^x$ by $2^x$ grid is $4^{x-1}$ tiles\\
+	The total missing tiles for $2^{x+1}$ by $2^{x+1}$ grid is $4^{x}$ tiles\\
+	
+	
+	To show that this is true in mathematically way, starting at $2^x$ by $2^x$ grid
+	\begin{eqnarray}\
+	4^{x-1} &=& 3a+1\\
+	4^x &=& 12a+4
+	\end{eqnarray}
+	
+	Now, for $2^{x+1}$ by $2^{x+1}$ grid given that b is the number of triminoes used to filled the bigger grid
+	\begin{eqnarray}
+	4^{x} &=& 3b+1\\
+	12a+4 &=& 3b+1\\
+	3a+1 &=& \frac{3b+1}{4}
+	\end{eqnarray}
+	
+	So, it is possible for all grids since any 3n+1 = 4*m so $\frac{3b+1}{4}$ will be an integer. Also, since it is true for P(x), the $2^{x+1}$ by $2^{x+1}$ grid which made from 4 grids of $2^x$ by $2^x$ grid will be able to fit one painted cell into the grid.\\
+	
+	From the induction hypothesis, P(x-1) $\implies$ P(x) and P(x) holds for all $x \geq 1$,  $2^x$ by $2^x$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell Q.E.D.\\ 
+	
+	\question{4}{Curious Fact about Graphs}
+	Done. Check the text file for ID.\\
+	
+	\question{5}{Basic DFAs}
+	\part{1} Prove {\em Theorem}:
+	for any $n \geq 0$, \texttt{Solve\_Hanoi} (n, {From\_Peg}, {To\_Peg}, {Aux\_Peg}) generates exactly $2^n-1$ lines of instruction\\
+	
+	Predicate : P(x) $\equiv$ for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	
+	Base case : P(0) $\equiv$ \texttt{Solve\_Hanoi} (n, ...) generates exactly 0 lines of instruction which is true\\
+	
+	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
+	P(x)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	P(x+1)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^{x+1}-1$ lines of instruction\\ %do it again
+	
+	
+	To show that this is true in mathematically way, T(x) is the number of line generated from the function using recurrence.
+	\begin{eqnarray}
+	T(x) &=& 2T(x-1)+1; T(1) = 1; T(0) = 0\\
+	T(x) &=& 2^{x-1} + ... + 2 + 1\\
+	T(x) &=& 2^x - 1\\
+	LHS &=& 2^x - 1;T(x)\\
+	RHS &=& 2^x - 1\\
+	LHS &\equiv& RHS
+	\end{eqnarray}
+	
+	So, P(x) is true, this time we will prove the P(x+1) by using the equations above.
+	\begin{eqnarray}
+	T(x+1) &=& 2T(x)+1; T(1) = 1; T(0) = 0\\
+	T(x+1) &=& 2^{x} + ... + 2 + 1\\
+	T(x+1) &=& 2^{x} + 2^x - 1;
+	\end{eqnarray} 
+	Using T(x) to solve the equation below\\
+	\begin{eqnarray}
+	T(x+1) &=& 2^{x+1} - 1\\
+	LHS &=& 2^{x+1} - 1;T(x+1)\\
+	RHS &=& 2^{x+1} - 1;\\
+	LHS &\equiv& RHS
+	\end{eqnarray}
+	
+	From the induction hypothesis, P(x-1) $\implies$ P(x) and P(x) holds for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction. Q.E.D.\\
+	
+	\part{3} Prove {\em printRuler}: \\\\
+	These are the equations we know from this problem\\
+	$f(n)=2f(n-1)+1, f(0)=0$ is number of lines\\
+	$g(n)=2g(n-1)+n, g(0)=0$ is number of dashes\\
+	$g(n)=a*f(n)+b*n+c$
+	\begin{enumerate}
+		\item Basically, I just followed the hint
+		\begin{eqnarray}
+		g(0)&=&a*f(0)+b*0+c\\
+		g(0)&=&c\\ 
+		g(0)&=&0
+		\end{eqnarray} 
+		So, c = 0
+		
+		\item We will find a and b
+		\begin{eqnarray}
+		g(n)&=&2g(n-1)+n\\
+  		a*f(n)+b*n&=&2(a*f(n-1)+b*(n-1))+n\\
+  		a*f(n)+b*n&=&2a*f(n-1)+2b*(n-1)+n\\
+  		a*f(n)&=&2a*f(n-1)+b*n-2b+n\\
+  		a*f(n)-2a*f(n-1)&=&b*n-2b+n
+		\end{eqnarray}
+		Let's do it side by side
+		\begin{eqnarray}  		
+		a(f(n)-2f(n-1))&=&b*n+n-2b\\
+		a(1)&=&n*(b+1)-2b\\
+		a+2b&=&n*(b+1)
+		\end{eqnarray}
+		\begin{eqnarray}
+		a+2b-n*(b+1)&=&0
+		\end{eqnarray}
+		To find a and b, we know that substitute P and Q = 0 will solve this equation
+		\begin{eqnarray}
+		P + Qn &=& 0\\
+		a+2b&=&P\\
+		(b+1)&=&Q\\
+		b&=&-1\\
+		a&=&2
+		\end{eqnarray}
+		\begin{eqnarray}
+		g(n)&=&a*f(n)+b*n\\
+		g(n)&=&2*f(n)-n
+		\end{eqnarray}
+		
+		\item Previously, we got $g(n)=2*f(n)-n$\\
+		Also, $f(n) = 2^n-1$. In fact, $g(n)=2^{n+1}-n-2$.
+		\item Theorem : $g(n)=2^{n+1}-n-2$ works for all $n\geq0$\\
+		Predicate : P(x) $\equiv$ $g(x)=2^{x+1}-x-2$ works for all $x\geq0$\\
+		Base case : P(0) $\equiv$ $g(0)=0$ is true\\
+		Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
+		P(x)  $\equiv$ $g(x)=2^{x+1}-x-2$\\
+		P(x+1)  $\equiv$ $g(x+1)=2^{x+2}-x-3$\\
+		Actually, we know that $g(n)=2g(n-1)+n$ has a close form of $g(x)=2^{x+1}-x-2$ according to what we have done on part 2.
+		
+		So, P(x) is true, this time we will prove the P(x+1) by using the equations above.
+		\begin{eqnarray}
+		g(x+1)&=&2^{x+2}-x-3\\
+		g(x+1)&=&2*2^{x+1}-x-3\\
+		g(x+1)&=&2(g(x)+x+2)-x-3\\
+		g(x+1)&=&2g(x)+(x+1)\\
+		LHS &=& 2^{x+2}-x-3\\
+		RHS &=& 2g(x)+(x+1)\\
+		LHS &\equiv& RHS
+		\end{eqnarray}
+		
+		From the induction hypothesis, P(x) $\implies$ P(x+1) and P(x) holds for any $x \geq 0$ which will make $g(x)=2^{x+1}-x-2$ true. So, $g(x)=2^{x+1}-x-2$ works. Q.E.D.\\
+	\end{enumerate}
+
+	\question{6}{Penultimate}
+	\part{1} Prove {\em Theorem}:
+	for any $n \geq 0$, \texttt{Solve\_Hanoi} (n, {From\_Peg}, {To\_Peg}, {Aux\_Peg}) generates exactly $2^n-1$ lines of instruction\\
+	
+	Predicate : P(x) $\equiv$ for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	
+	Base case : P(0) $\equiv$ \texttt{Solve\_Hanoi} (n, ...) generates exactly 0 lines of instruction which is true\\
+	
+	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
+	P(x)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	P(x+1)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^{x+1}-1$ lines of instruction\\ %do it again
+	
+	\question{7}{Digit Sum}
+	\part{1} Prove {\em Theorem}:
+	for any $n \geq 0$, \texttt{Solve\_Hanoi} (n, {From\_Peg}, {To\_Peg}, {Aux\_Peg}) generates exactly $2^n-1$ lines of instruction\\
+	
+	Predicate : P(x) $\equiv$ for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	
+	Base case : P(0) $\equiv$ \texttt{Solve\_Hanoi} (n, ...) generates exactly 0 lines of instruction which is true\\
+	
+	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
+	P(x)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	P(x+1)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^{x+1}-1$ lines of instruction\\ %do it again
+\end{document}
