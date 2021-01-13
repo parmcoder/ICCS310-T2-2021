@@ -80,49 +80,61 @@
 	
 	\part{1} Let $p \geq 2$ be a prime and a be a positive integer. Prove that if $p  \text{ divides } a^2$, then $p \text{ divides } a$.\\
 	
-	{\em Proof}:
+	{\em Proof}: Using contraposition, we can prove that if $p \text{ does not divides } a$, then $p \text{ does not divides } a^2$ instead.
+	
+	Let $a$ be any number that cannot be divided by p, so $ a = (p*q) + r$ where $r < p$ and $r,q \in \mathbb{I^+}$. So, we have $a^2 = ((p*q) + r)^2 = (p*q)^2 + 2*(p*q*r) + r^2$. We can see that $r^2$ cannot be divided by $p$. Hence, $p \text{ does not divides } a^2$. 
+	
+	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$.
 	
 	\part{2} Prove that if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.\\
 	
-	{\em Proof}:
+	{\em Proof}: Assume for the sake of contradiction, let $\sqrt{p}$ be a rational number. Then, $√p=a/b$ ,where a and b are integers and b is not = 0.
+	
+	Then,√p=a/b
+	
+	Squaring both sides,
+	
+	(√p)2/1 = (a/b)2
+	
+	p/1=a2/b2
+	
+	pb2=a2. (Equation 1)
+	
+	Therefore,p divides a2.
+	
+	p divides a also.
+	
+	Let,a=bq for some integer q.
+	
+	Put a=bq in equation 1,
+	
+	pb2=p2q2
+	
+	b2=pq2
+	
+	Therefore,p divides b2.
+	
+	p divides b also.
+	
+	Thus,p is a common factor of a and b.
+	
+	So,our assumption is not correct.
+	
+	Hence,√p is an irrational number.
+	
 	
 	\question{3}{Spacing}
-	\part{1} Prove {\em Theorem}:
-	Any $2^n$ by $2^n$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell
 	
-	Predicate : P(x) $\equiv$ $\forall x \geq 1,$ $2^x$ by $2^x$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell  \\
+	Prove that in any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.
 	
-	Base case : P(1) $\equiv$ one of the basic 4 missing tiles perfectly fits 2 by 2 grid with one painted cell since there is one empty space left which is true\\
+	{\em Proof}: Without loss of generality, 
 	
-	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
-	P(x)  $\equiv$ missing tiles perfectly fits $2^x$ by $2^x$ grid with one painted cell\\
-	P(x+1) 	$\equiv$ missing tiles perfectly fits $2^{x+1}$ by $2^{x+1}$ grid with one painted cell\\
-	
-	Assume that each grid was filled up before having its tiles taken out by one for painting that cell. We can break it down to many $2*2$ grid which can fit at least one trimino according to P(1) Moreover, since P(1) is true, the size of the grid will always left an even number of empty space which is equal to $4^{x-1}$ which can be divided by 3 and left a remainder = 1\\
-	
-	The total missing tiles for $2^x$ by $2^x$ grid is $4^{x-1}$ tiles\\
-	The total missing tiles for $2^{x+1}$ by $2^{x+1}$ grid is $4^{x}$ tiles\\
-	
-	
-	To show that this is true in mathematically way, starting at $2^x$ by $2^x$ grid
-	\begin{eqnarray}\
-	4^{x-1} &=& 3a+1\\
-	4^x &=& 12a+4
-	\end{eqnarray}
-	
-	Now, for $2^{x+1}$ by $2^{x+1}$ grid given that b is the number of triminoes used to filled the bigger grid
-	\begin{eqnarray}
-	4^{x} &=& 3b+1\\
-	12a+4 &=& 3b+1\\
-	3a+1 &=& \frac{3b+1}{4}
-	\end{eqnarray}
-	
-	So, it is possible for all grids since any 3n+1 = 4*m so $\frac{3b+1}{4}$ will be an integer. Also, since it is true for P(x), the $2^{x+1}$ by $2^{x+1}$ grid which made from 4 grids of $2^x$ by $2^x$ grid will be able to fit one painted cell into the grid.\\
-	
-	From the induction hypothesis, P(x-1) $\implies$ P(x) and P(x) holds for all $x \geq 1$,  $2^x$ by $2^x$ grid with one painted cell can be tiled using L-shaped triominoes such that the entire grid is covered by triominoes but no triominoes overlap with each other nor the painted cell Q.E.D.\\ 
 	
 	\question{4}{Curious Fact about Graphs}
-	Done. Check the text file for ID.\\
+	
+	Let $G = (V, E )$ be an undirected graph. Show that G contains two nodes that have equal degrees.
+	
+	{\em Proof}: Without loss of generality, 
 	
 	\question{5}{Basic DFAs}
 	\part{1} Prove {\em Theorem}:
