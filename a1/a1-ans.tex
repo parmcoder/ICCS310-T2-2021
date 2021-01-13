@@ -84,44 +84,27 @@
 	
 	Let $a$ be any number that cannot be divided by p, so $ a = (p*q) + r$ where $r < p$ and $r,q \in \mathbb{I^+}$. So, we have $a^2 = ((p*q) + r)^2 = (p*q)^2 + 2*(p*q*r) + r^2$. We can see that $r^2$ cannot be divided by $p$. Hence, $p \text{ does not divides } a^2$. 
 	
-	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$.
+	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$.\\
 	
 	\part{2} Prove that if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.\\
 	
-	{\em Proof}: Assume for the sake of contradiction, let $\sqrt{p}$ be a rational number. Then, $√p=a/b$ ,where a and b are integers and b is not = 0.
-	
-	Then,√p=a/b
-	
-	Squaring both sides,
-	
-	(√p)2/1 = (a/b)2
-	
-	p/1=a2/b2
-	
-	pb2=a2. (Equation 1)
-	
-	Therefore,p divides a2.
-	
-	p divides a also.
-	
-	Let,a=bq for some integer q.
-	
-	Put a=bq in equation 1,
-	
-	pb2=p2q2
-	
-	b2=pq2
-	
-	Therefore,p divides b2.
-	
-	p divides b also.
-	
-	Thus,p is a common factor of a and b.
-	
-	So,our assumption is not correct.
-	
-	Hence,√p is an irrational number.
-	
+	{\em Proof}: Assume for the sake of contradiction, let $\sqrt{p}$ be a rational number and p is any positive prime number. Then, $\sqrt{p}=a/b$ where $a$ and $b$ are integers and $b \neq 0$.
+	\begin{eqnarray}
+	\sqrt{p}&=&a/b\\
+	p&=&a^2/b^2\\
+	p*b^2&=&a^2
+	\end{eqnarray}
+	From observation, $p$ divides $a^2$ and that means $p$ divide $a$ (Lemma 2.1).
+	Let $a = bq$ for some $q \in \mathbb{I^+}$ and plug it back into equation 3.
+	\begin{eqnarray}
+	p*b^2&=&p^2q^2\\
+	b^2&=&pq^2
+	\end{eqnarray}
+	From observation, $p$ divides $b^2$ and that means $p$ divide $b$ (Lemma 2.1).
+	Since we showed that $	p=a^2/b^2 $ but p is a common factor of $a$ and $b$. We can
+	conclude that the equation is false and our assumption is contradicting.
+	Hence, $\sqrt{p}$ is irrational.
+	Therefore, if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.
 	
 	\question{3}{Spacing}
 	
