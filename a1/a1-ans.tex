@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
 
 \usepackage[margin=1in]{geometry}
 
@@ -55,7 +56,7 @@
 	Also, we will show that $\overline{A_1} \cap \overline{A_2} \cap \overline{A_3} \subseteq \overline{A_1 \cup A_2 \cup A_3} $. Let $y \in \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$, so y is in $\overline{A_1} $, $ \overline{A_2} $, and $ \overline{A_3}$, by the definition of intersection. 
 	This means $y \notin A_1$, $y \notin A_2$, and $y \notin A_3$, by the definition of complement. It follows that $y \notin A_1 \cup A_2 \cup A_3$, and so $y \in \overline{A_1 \cup A_2 \cup A_3}$.
 	
-	In conclusion, $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.
+	In conclusion, $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$. $\square$
 	
 	
 	\part{2} Let A and B be any sets from a universe $\mathcal{U}$. 
@@ -73,7 +74,7 @@
 	Also, we will show that $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B} $. Let $y \in \overline{A} \cap \overline{B}$, so y is in $\overline{A} $ and $ \overline{B}$, by the definition of intersection. 
 	This means $y \notin A$ and $y \notin B$, by the definition of complement. It follows that $y \notin A \cup B$, and so $y \in \overline{A \cup B}$.
 	
-	In conclusion, $ \overline{A \cup B} = \overline{A} \cap \overline{B}$.
+	In conclusion, $ \overline{A \cup B} = \overline{A} \cap \overline{B}$. $\square$
 
 	
 	\question{2}{Prime and Irrational}
@@ -84,7 +85,7 @@
 	
 	Let $a$ be any number that cannot be divided by p, so $ a = (p*q) + r$ where $r < p$ and $r,q \in \mathbb{I^+}$. So, we have $a^2 = ((p*q) + r)^2 = (p*q)^2 + 2*(p*q*r) + r^2$. We can see that $r^2$ cannot be divided by $p$. Hence, $p \text{ does not divides } a^2$. 
 	
-	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$.\\
+	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$. $\square$ \\
 	
 	\part{2} Prove that if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.\\
 	
@@ -104,7 +105,7 @@
 	Since we showed that $	p=a^2/b^2 $ but p is a common factor of $a$ and $b$. We can
 	conclude that the equation is false and our assumption is contradicting.
 	Hence, $\sqrt{p}$ is irrational.
-	Therefore, if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.
+	Therefore, if $p$ is any positive prime number, then $\sqrt{p}$ is irrational. $\square$
 	
 	\question{3}{Spacing}
 	
@@ -112,7 +113,7 @@
 	
 	{\em Proof}: Assume for the sake of contradiction that there is no two numbers that are consecutive given any set of $n +1$ numbers from $\{1, . . . , 2n\}$. Let $A$ be the set of $n +1$ numbers from $\{1, . . . , 2n\}$. Using pigeonhole principle, the required size of $A$ is too large to prevent consecutive numbers because the when the size of $A$ is n we could use the set of odd natural number or even natural number where all elements in $A$ is less than $n$. However, the last number to be added will contradict to our assumption that no two numbers are consecutive since there would be no other number to pick, except the consecutive number from $\{1, . . . , 2n\}$. Hence, $A$ is contradicting to our assumption.
 	
-	Therefore, any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.
+	Therefore, any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.$\square$
 	
 	
 	\question{4}{Curious Fact about Graphs}
@@ -121,7 +122,7 @@
 	
 	{\em Proof}: Without loss of generality, assume for the sake of contradiction that $G$ is an undirected graph with no loops which has $n$ vertices and every vertices have different degrees. Let D be the set of degrees for each vertex, $D = \{d_1, d_2, d_3, \dots , d_n\}$. Then, $D = \{0,2,...,n-1\}$, since the number of degree is between $0$ to $n-1$.  From observation, we have that there is a vertex with degree $n-1$ and a vertex with degree $0$ which is not possible for any undirected graph. Hence, $D$ contradicted to what we assumed.
 	
-	Therefore, if $G = (V, E )$ is an undirected graph, then $G$ contains two nodes that have equal degrees.
+	Therefore, if $G = (V, E )$ is an undirected graph, then $G$ contains two nodes that have equal degrees.$\square$
 	
 	\question{5}{Basic DFAs}
 	Let $\sum = \{a, b, c\}$.
@@ -129,47 +130,97 @@
 	\part{1} The language of strings on $\sum$ whose length is divisible by 5.
 	
 	{\em Solution}:
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{figures/1.jpg}
+	\end{figure}
 	
+	Let n be the length of the input string.
+	
+	$S_0$ represents the state where $0 \pmod{5} \equiv n$.\\
+	$S_1$ represents the state where $1 \pmod{5} \equiv n$.\\
+	$S_2$ represents the state where $2 \pmod{5} \equiv n$.\\
+	$S_3$ represents the state where $3 \pmod{5} \equiv n$.\\
+	$S_4$ represents the state where $4 \pmod{5} \equiv n$.
+	
+	So, the accepting state is $S_0$ since this state means the length is divisible by 5.
+		
 	\part{2} The language of strings on $\sum$ whose length is either even or divisible by 5 (or both).
 	
 	{\em Solution}:
 	
-	\part{3} The language of strings on $\sum$ that has at least one a and contains an even number of bs.
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{figures/2.jpg}
+	\end{figure}
+	Let $n$ be the length of the input string.
+	
+	$S_0$ represents the state where $0 \pmod{5} \equiv n$.\\
+	$S_1$ represents the state where $1 \pmod{5} \equiv n$.\\
+	$S_2$ represents the state where $2 \pmod{5} \equiv n$.\\
+	$S_3$ represents the state where $3 \pmod{5} \equiv n$.\\
+	$S_4$ represents the state where $4 \pmod{5} \equiv n$.
+	
+	So, the accepting state is $S_0, S_2, S_4$ since this state means the length is either even or divisible by 5
+	
+	\part{3} The language of strings on $\sum$ that has at least one a and contains an even number of $b$s.
 	
 	{\em Solution}:
-	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{figures/3.jpg}
+	\end{figure}
 
+	Let $K$ be any input string from language set $\sum$.
+	
+	$S_\epsilon$ represents the state where there is not a match with the pattern.\\
+	$S_a$ represents the state where K has at least one $a$ and contains an even number of $b$s.\\
+	$S_{ba}$ represents the state where K has at least one $a$ and contains an odd number of $b$s.\\
+	$S_b$ represents the state where K has no $a$ and contains an odd number of $b$s.
+	
+	So, the accepting state is $S_a$ since this state means the input string has at least one $a$ and contains an even number of $b$s.
+	\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+	
 	\question{6}{Penultimate}
-	\part{1} Prove {\em Theorem}:
+	\part{1} Let $L_2 = \{x \in \sum^{*}: \text{the 2nd-to-last symbol of x is 1}\}$. Draw a DFA with 4 states that accepts $L_2$.
 	
-		{\em Solution}:
+	{\em Solution}:
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=\linewidth]{figures/4.jpg}
+	\end{figure}
+	
+	$S_\epsilon$ represents the state where there is not a match with the pattern.\\
+	$S_{n-1}$ represents the state where $1$ is found but at the last position.\\
+	$S_{1}$ represents the state where $1$ is found at the second-to-last position, and the last alphabet is $1$.\\
+	$S_0$ represents the state where $1$ is found at the second-to-last position, and the last alphabet is $0$.\\
+	
+	So, the accepting state is $S_1 \text{ and } S_0$ since these states mean the second-to-last symbol of input string is $1$.
 	
 	
-	for any $n \geq 0$, \texttt{Solve\_Hanoi} (n, {From\_Peg}, {To\_Peg}, {Aux\_Peg}) generates exactly $2^n-1$ lines of instruction\\
+	\part{2} Show that any DFA that correctly recognizes $L_2$ must have at least 4 states.
 	
-	Predicate : P(x) $\equiv$ for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
-	
-	Base case : P(0) $\equiv$ \texttt{Solve\_Hanoi} (n, ...) generates exactly 0 lines of instruction which is true\\
-	
-	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
-	P(x)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
-	P(x+1)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^{x+1}-1$ lines of instruction\\ %do it again
-	
-	\part{2} Show that any DFA that correctly recognizes$L_2$ must have at least 4 states.
-	
-	{\em Proof}: Without loss of generality, let us assume for the sake of contradiction that there exist D, a DFA that correctly recognizes $L_2$ using less than 4 states. Let D be a DFA that has 3 states. So, to check whether a string can be recognize requires 4 steps, the first step is to check whether it found 1 yet, the second  step is to check whether the next state is 1 or zero, and there will be two cases to consider, the first case is that the second-to-last symbol of $x$ is 1 and the next symbol is 1 and another case is the second-to-last symbol of $x$ is 1 and the next symbol is 0. We have to start over every time any 0 showed up after we found the first 1. Using pigeonhole principle, the least number of states required is 4 since we showed that 4 different states are needed but the number of states in D is smaller than 4. Hence, D cannot correctly recognize $L_2$ with only 3 states which is contradicting to what our assumption.
+	{\em Proof}: Without loss of generality, let us assume for the sake of contradiction that there exist D, a DFA that correctly recognizes $L_2$ using less than 4 states. Let D be a DFA that has 3 states. So, to check whether a string can be recognize requires 4 steps. 
+	The first step is to check whether we found 1 yet, because it could the the second last position symbol we need. 
+	The second step is to check whether the next state is 1 or zero, and there will be two cases to consider, the first case is that the second-to-last symbol of $x$ is 1 and the next symbol is 1 and another case is the second-to-last symbol of $x$ is 1 and the next symbol is 0. We have to change state every time any 0 showed up after we found the first 1. So, we need at least 4 steps to correctly recognize $L_2$. Using pigeonhole principle, the least number of states required is 4 since we showed that 4 different states are needed but the number of states in D is smaller than 4 and there are some patterns of symbols such as 1010 and 1101 that could end up in the same state. Hence, D cannot correctly recognize $L_2$ with only 3 states which is contradicting to what our assumption.
 	
 	Therefore, any DFA that correctly recognizes $L_2$ must have at least 4 states. $\square$
-	
+	\\\\\\\\\\
 	\question{7}{Digit Sum}
-	\part{1} Prove {\em Theorem}:
-	for any $n \geq 0$, \texttt{Solve\_Hanoi} (n, {From\_Peg}, {To\_Peg}, {Aux\_Peg}) generates exactly $2^n-1$ lines of instruction\\
+	\part{1} $L = \{x \in \sum^{*}: \texttt{DIGITSUM(x)} \text{is divisible by 3}\}$. Draw a DFA that recognizes $L$. Explain what each of your states represents.
 	
-	Predicate : P(x) $\equiv$ for any $x \geq 0$, \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
+	{\em Solution}:
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=400px]{figures/5.jpg}
+	\end{figure}
 	
-	Base case : P(0) $\equiv$ \texttt{Solve\_Hanoi} (n, ...) generates exactly 0 lines of instruction which is true\\
+	Let $n_i$ be the accumulating sum of input string at position $i$.
 	
-	Inductive Steps : Assume that if P(x) is true then P(x+1) is true\\
-	P(x)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^x-1$ lines of instruction\\
-	P(x+1)  $\equiv$ \texttt{Solve\_Hanoi} (x, ...) generates exactly $2^{x+1}-1$ lines of instruction\\ %do it again
+	$S_0$ represents the state where $0 \pmod{3} \equiv n_i$.\\
+	$S_1$ represents the state where $1 \pmod{3} \equiv n_i$.\\
+	$S_2$ represents the state where $2 \pmod{3} \equiv n_i$.\\
+	
+	So, the accepting state is $S_0$ since this state means $\texttt{DIGITSUM(x)} \text{is divisible by 3}$ where $x \in \sum^{*}$.
 \end{document}
