@@ -7,7 +7,8 @@
 \usepackage{graphicx}
 
 \usepackage[margin=1in]{geometry}
-
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
 \newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
 	\noindent{\bf #1: #2} \vspace{0.5em}
 	\hrule \vspace{.10in}}
@@ -15,7 +16,7 @@
 
 \newcommand{\myname}{Possawat Sanorkam}
 \newcommand{\myemail}{possawat2017@hotmail.com}
-\newcommand{\myhwnum}{1}
+\newcommand{\myhwnum}{2}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 1pt}
@@ -39,75 +40,62 @@
 		\today \\
 	\end{center}
 	
-	\question{1}{Review: Something About Sets} %don't delete yet:(}
+	\question{1}{Regex to NFA/DFA} %don't delete yet:(}
 	
-	\part{1} Let $A_1, A_2, A_3$ be any sets from a universe $\mathcal{U}$. 
-	 {\em Prove that $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.}\\
+	\part{1} $a(abb)^* + b $
 	
-	{\em Proof}: We want to show that $\overline{A_1 \cup A_2 \cup A_3} \subseteq \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$
-	and $\overline{A_1} \cap \overline{A_2} \cap \overline{A_3} \subseteq \overline{A_1 \cup A_2 \cup A_3} $
-	
-	Let $A_1, A_2, A_3$ be any three given sets. We'll first prove that
-	$\overline{A_1 \cup A_2 \cup A_3} \subseteq \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$.
-	Let $x \in \overline{A_1 \cup A_2 \cup A_3}$. Then, $x \notin A_1 \cup A_2 \cup A_3$ by the definition of complement, so then $x \notin A_1$, $x \notin A_2$ and $x \notin A_3$, by the definition of union. This means that $x \in \overline{A_1}$, $x \in \overline{A_2}$, and $x \in \overline{A_3}$, by the definition of complement. 
-	Hence, $x \in \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$ 
-	since x is in $\overline{A_1} $, $ \overline{A_2} $, and $ \overline{A_3}$.
+	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto] 
+	\node[state,initial] (q_0)   {$q_0$}; 
+	\node[state] (q_1) [ right=of q_0] {$q_1$}; 
+	\node[state] (q_2) [ right=of q_1] {$q_2$}; 
+	\node[state] (q_3) [above right=of q_2] {$q_3$}; 
+	\node[state,accepting](q_6) [below right=of q_1] {$q_6$};	
+	\node[state,accepting](q_7) [above left=of q_2] {$q_7$};
+	\path[->] 
+	(q_0) edge  node {a} (q_1)
+	edge [swap] node {b} (q_6)
+	(q_1) edge  node {a} (q_2)
+	(q_2) edge  node {b} (q_3)
+	(q_3) edge  node {b} (q_7)
+	(q_7) edge  node {a} (q_2);
 
-	Also, we will show that $\overline{A_1} \cap \overline{A_2} \cap \overline{A_3} \subseteq \overline{A_1 \cup A_2 \cup A_3} $. Let $y \in \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$, so y is in $\overline{A_1} $, $ \overline{A_2} $, and $ \overline{A_3}$, by the definition of intersection. 
-	This means $y \notin A_1$, $y \notin A_2$, and $y \notin A_3$, by the definition of complement. It follows that $y \notin A_1 \cup A_2 \cup A_3$, and so $y \in \overline{A_1 \cup A_2 \cup A_3}$.
+	\end{tikzpicture}
 	
-	In conclusion, $ \overline{A_1 \cup A_2 \cup A_3} = \overline{A_1} \cap \overline{A_2} \cap \overline{A_3}$. $\square$
+	\part{2} $(a + b)^* aa(a + b)^*$
 	
-	
-	\part{2} Let A and B be any sets from a universe $\mathcal{U}$. 
-	{\em Prove that $ \overline{A \cup B} = \overline{A} \cap \overline{B}$.}\\
-	
-	{\em Proof}: We want to show that $\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$
-	and $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B} $
-	
-	Let $A \text{ and } B$ be any two given sets. We'll first prove that
-	$\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$.
-	Let $x \in \overline{A \cup B}$. Then, $x \notin A \cup B$ by the definition of complement, so then $x \notin A$, and $x \notin B$, by the definition of union. This means that $x \in \overline{A}$, and $x \in \overline{B}$, by the definition of complement. 
-	Hence, $x \in \overline{A} \cap \overline{B}$ 
-	since x is in $\overline{A} $ and $ \overline{B}$.
-	
-	Also, we will show that $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B} $. Let $y \in \overline{A} \cap \overline{B}$, so y is in $\overline{A} $ and $ \overline{B}$, by the definition of intersection. 
-	This means $y \notin A$ and $y \notin B$, by the definition of complement. It follows that $y \notin A \cup B$, and so $y \in \overline{A \cup B}$.
-	
-	In conclusion, $ \overline{A \cup B} = \overline{A} \cap \overline{B}$. $\square$
+	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto] 
+	\node[state,initial] (q_0)   {$q_0$}; 
+	\node[state] (q_1) [right=of q_0] {$q_1$}; 
+	\node[state,accepting](q_2) [right=of q_1] {$q_2$};
+	\path[->] 
+	(q_0) edge [loop above] node {a,b} ()
+	edge  node {a} (q_1)
+	(q_1) edge node {a} (q_2)
+	(q_2) edge [loop above] node {a,b} ();
+	\end{tikzpicture}
 
+	\part{3} $a^+ + (ab)^+$
 	
-	\question{2}{Prime and Irrational}
+	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto] 
+	\node[state,initial] (q_0)   {$q_0$}; 
+	\node[state,accepting] (q_1) [above right=of q_0] {$q_1$}; 
+	\node[state,accepting](q_2) [right=of q_1] {$q_2$};
+	\node[state] (q_3) [below right=of q_1] {$q_3$}; 
+	\path[->] 
+	(q_0) edge  node {a} (q_1)
+	edge node {a} (q_3)
+	(q_1) edge [loop above] node {a} ()
+	(q_2) edge [bend left]  node {a} (q_3)
+	(q_3) edge [bend left]  node {b} (q_2);
+	\end{tikzpicture}
 	
-	\part{1} Let $p \geq 2$ be a prime and a be a positive integer. Prove that if $p  \text{ divides } a^2$, then $p \text{ divides } a$.\\
+	\question{2}{Finite-State Machines to Regex}
 	
-	{\em Proof}: Using contraposition, we can prove that if $p \text{ does not divides } a$, then $p \text{ does not divides } a^2$ instead.
+	\part{1} $ \varnothing^* $ (Rejecting any input)
 	
-	Let $a$ be any number that cannot be divided by p, so $ a = (p*q) + r$ where $r < p$ and $r,q \in \mathbb{I^+}$. So, we have $a^2 = ((p*q) + r)^2 = (p*q)^2 + 2*(p*q*r) + r^2$. We can see that $r^2$ cannot be divided by $p$. Hence, $p \text{ does not divides } a^2$. 
+	\part{2} $a^* + a^*b^+a^+b$ (Contains only $a$s or any pattern of $a$s to $b$s to $a$s to $b$s.)
 	
-	Therefore, if $p  \text{ divides } a^2$, then $p \text{ divides } a$. $\square$ \\
-	
-	\part{2} Prove that if $p$ is any positive prime number, then $\sqrt{p}$ is irrational.\\
-	
-	{\em Proof}: Assume for the sake of contradiction, let $\sqrt{p}$ be a rational number and p is any positive prime number. Then, $\sqrt{p}=a/b$ where $a$ and $b$ are integers and $b \neq 0$.
-	\begin{eqnarray}
-	\sqrt{p}&=&a/b\\
-	p&=&a^2/b^2\\
-	p*b^2&=&a^2
-	\end{eqnarray}
-	From observation, $p$ divides $a^2$ and that means $p$ divide $a$ (Lemma 2.1).
-	Let $a = bq$ for some $q \in \mathbb{I^+}$ and plug it back into equation 3.
-	\begin{eqnarray}
-	p*b^2&=&p^2q^2\\
-	b^2&=&pq^2
-	\end{eqnarray}
-	From observation, $p$ divides $b^2$ and that means $p$ divide $b$ (Lemma 2.1).
-	Since we showed that $	p=a^2/b^2 $ but p is a common factor of $a$ and $b$. We can
-	conclude that the equation is false and our assumption is contradicting.
-	Hence, $\sqrt{p}$ is irrational.
-	Therefore, if $p$ is any positive prime number, then $\sqrt{p}$ is irrational. $\square$
-	
-	\question{3}{Spacing}
+	\question{3}{Binary Addition}
 	
 	Prove that in any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.
 	
@@ -116,7 +104,7 @@
 	Therefore, any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.$\square$
 	
 	
-	\question{4}{Curious Fact about Graphs}
+	\question{4}{Division Operation?}
 	
 	Let $G = (V, E )$ be an undirected graph. Show that G contains two nodes that have equal degrees.
 	
@@ -124,7 +112,7 @@
 	
 	Therefore, if $G = (V, E )$ is an undirected graph, then $G$ contains two nodes that have equal degrees.$\square$
 	
-	\question{5}{Basic DFAs}
+	\question{5}{Does It Accept Everything?}
 	Let $\sum = \{a, b, c\}$.
 	
 	\part{1} The language of strings on $\sum$ whose length is divisible by 5.
@@ -182,7 +170,7 @@
 	\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	
-	\question{6}{Penultimate}
+	\question{6}{All The Same?}
 	\part{1} Let $L_2 = \{x \in \sum^{*}: \text{the 2nd-to-last symbol of x is 1}\}$. Draw a DFA with 4 states that accepts $L_2$.
 	
 	{\em Solution}:
