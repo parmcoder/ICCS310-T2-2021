@@ -132,13 +132,26 @@
 	
 	From the lemma, if $L$ is a regular language, then $L^R$ is also regular. We want to show that $A^R$ is a regular language. Let $L(M) = A^R$. So, $M$ is a machine that recognize $A^R$, else we can call it the binary adder.
 	
-	$M$ is machine that translate each vector into transfer bit and send it to the next state. It only accepts the string that follow its calculation (The sum of first row, second row and carry bit must be equal to the third row). If both numbers are 1 on first and second rows, we send it the the state which refers to a carried bit included state. There are 2 states, $q_1,\text{and }q_2$.
+	$M$ is machine that translate each vector into transfer bit and send it to the next state. It only accepts the string that follow its calculation (The sum of first row, second row and carry bit must be equal to the third row). If there is a carry bit, we send it the state which contains carry bit. There are 2 states, $q_0,\text{and }q_1$.
 	
-	$q_1$ is the accepting state with no carry bit transferred.
+	$q_0$ is the accepting state with no carry bit transferred.
 	
-	$q_2$ is the state with carry bit. (Not done with the addition yet)
+	$q_1$ is the state with a carry bit. (Not done with the addition yet)
 	
-	We can mathematically define a function of LSB addition as $a \odot b = c$ and a function of carry bit as $carry(x,y,z)$. The transition of this machine follows that $x_1 \odot x_2 + \text{ carry bit state } = x_3$ must be satisfied and the next transition depends on the carry bit from $carry(x_1, x_2, \text{ carry bit state }) $ whether it will be $q_1 or q_2$. Hence, $A^R$ is regular and that makes $A$ regular also from the lemma.
+	We can mathematically define a function of LSB addition as $a \odot b = c$ and a function of carry bit as $carry(x,y,z)$. The transition of this machine follows that $x_1 \odot x_2 + \text{ carry bit state } = x_3$ must be satisfied and the next transition depends on the carry bit from $carry(x_1, x_2, \text{ carry bit state }) $ whether it will be $q_0or q_1$. 
+	
+	The transition function is defined as
+	\begin{equation*}
+	q_j = \delta
+	(q_i, \begin{bmatrix}
+	x_1 \\
+	x_2 \\
+	x_3
+	\end{bmatrix})
+	\end{equation*}
+	whenever $(x_1 \odot x_2) \odot i = x_3$ and $carry(x_1,x_2,i) = j$.
+	
+	Hence, $A^R$ is regular and that makes $A$ regular also from the lemma.
 	
 	Therefore, A is regular. $\square$
 	
