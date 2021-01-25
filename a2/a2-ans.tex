@@ -93,137 +93,43 @@
 	
 	\part{1} $ \varnothing^* $ (Rejecting any input)
 	
-	\part{2} $a^* + a^*b^+a^+b$ (Contains only $a$s or any pattern of $a$s to $b$s to $a$s to $b$s.)
+	\part{2} $a^* + a^*b^+a^+b$ (Contains only $a$s or any pattern of $a$s to $b$s to $a$s to $b$s.)\\\\\\\\
 	
 	\question{3}{Binary Addition}
 	
-	Prove that in any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.
+	$$A = \{w \in \Sigma^* \text{ $|$ } \text{ the bottom row of w is the sum of the top two rows } xy \in L_1 \}$$
 	
-	{\em Proof}: Assume for the sake of contradiction that there is no two numbers that are consecutive given any set of $n +1$ numbers from $\{1, . . . , 2n\}$. Let $A$ be the set of $n +1$ numbers from $\{1, . . . , 2n\}$. Using pigeonhole principle, the required size of $A$ is too large to prevent consecutive numbers because the when the size of $A$ is n we could use the set of odd natural number or even natural number where all elements in $A$ is less than $n$. However, the last number to be added will contradict to our assumption that no two numbers are consecutive since there would be no other number to pick, except the consecutive number from $\{1, . . . , 2n\}$. Hence, $A$ is contradicting to our assumption.
+	Prove that A is regular.
 	
-	Therefore, any set of $n +1$ numbers from $\{1, . . . , 2n\}$, there are always two numbers that are consecutive.$\square$
+	{\em Proof}: 
 	
 	
 	\question{4}{Division Operation?}
 	
-	Let $G = (V, E )$ be an undirected graph. Show that G contains two nodes that have equal degrees.
+	$$\frac{L_1}{L_2} = \{x \text{ $|$ } \exists \in L_2 \text{ s.t. } xy \in L_1 \}$$
+	Prove that if $L_1$ and $L_2$ are regular, then $\frac{L_1}{L_2}$ is also regular.
 	
-	{\em Proof}: Without loss of generality, assume for the sake of contradiction that $G$ is an undirected graph with no loops which has $n$ vertices and every vertices have different degrees. Let D be the set of degrees for each vertex, $D = \{d_1, d_2, d_3, \dots , d_n\}$. Then, $D = \{0,2,...,n-1\}$, since the number of degree is between $0$ to $n-1$.  From observation, we have that there is a vertex with degree $n-1$ and a vertex with degree $0$ which is not possible for any undirected graph. Hence, $D$ contradicted to what we assumed.
+	{\em Proof}: 
+	From a lemma, for every regular expression $R$, there is a DFA that recognizes the language $L(R)$.
+	Suppose $L_1$ and $L_2$ are regular, then there exist DFA $M_1 =(Q,\Sigma,\delta,q_0,F_1)$ which accepts $L_1$ and DFA $M_2 =(Q,\Sigma,\delta,q_0,F_2)$ which accepts $L_2$. We want to show that $L_3 = \frac{L_1}{L_2}$ where $L_1, L_2, L_3 \in \mathbb{I}$.
 	
-	Therefore, if $G = (V, E )$ is an undirected graph, then $G$ contains two nodes that have equal degrees.$\square$
+	We have that $Q, \Sigma, \delta, \text{and } q_0$ in $M_1$ and $M_2$ can be shared, just that the accepting states are different. $L_3$ then can be recognized by some DFA $M_3 = (Q,\Sigma,\delta,q_0,F_3)$. We know that $\Sigma$ is a number digit alphabet (0-9). Then, each state is just an integer. So, $\forall x \in F_1, \exists y \in F_2, \text{and } \exists z \in F_3, zy = x$.
+	
+	From the observation, $L_1$, which is regular, contains accepting states that made of $zy$ from $F_2$ and $F_3$. Also, $L_2$, which is regular, recognized by $M_2$ and we can choose any number to be an accepting state in $F_2$ (As long as we accept at least a number). Since $F_3$ can be any state (number) also, there always exist $z$ that will satisfied $zy = x$. Thus, $M_3$ exists since we can design $F_3$.
+	
+	Therefore, if $L_1$ and $L_2$ are regular, then $\frac{L_1}{L_2}$ is also regular. $\square$
 	
 	\question{5}{Does It Accept Everything?}
-	Let $\sum = \{a, b, c\}$.
+	Let $M = (Q, \Sigma, \delta, q_0, F)$.
 	
-	\part{1} The language of strings on $\sum$ whose length is divisible by 5.
-	
-	{\em Solution}:
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=\linewidth]{figures/1.jpg}
-	\end{figure}
-	
-	Let n be the length of the input string.
-	
-	$S_0$ represents the state where $0 \pmod{5} \equiv n$.\\
-	$S_1$ represents the state where $1 \pmod{5} \equiv n$.\\
-	$S_2$ represents the state where $2 \pmod{5} \equiv n$.\\
-	$S_3$ represents the state where $3 \pmod{5} \equiv n$.\\
-	$S_4$ represents the state where $4 \pmod{5} \equiv n$.
-	
-	So, the accepting state is $S_0$ since this state means the length is divisible by 5.
-		
-	\part{2} The language of strings on $\sum$ whose length is either even or divisible by 5 (or both).
-	
-	{\em Solution}:
-	
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=\linewidth]{figures/2.jpg}
-	\end{figure}
-	Let $n$ be the length of the input string.
-	
-	$S_0$ represents the state where $0 \pmod{5} \equiv n$.\\
-	$S_1$ represents the state where $1 \pmod{5} \equiv n$.\\
-	$S_2$ represents the state where $2 \pmod{5} \equiv n$.\\
-	$S_3$ represents the state where $3 \pmod{5} \equiv n$.\\
-	$S_4$ represents the state where $4 \pmod{5} \equiv n$.
-	
-	So, the accepting state is $S_0, S_2, S_4$ since this state means the length is either even or divisible by 5
-	
-	\part{3} The language of strings on $\sum$ that has at least one a and contains an even number of $b$s.
-	
-	{\em Solution}:
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=\linewidth]{figures/3.jpg}
-	\end{figure}
-
-	Let $K$ be any input string from language set $\sum$.
-	
-	$S_\epsilon$ represents the state where there is not a match with the pattern.\\
-	$S_a$ represents the state where K has at least one $a$ and contains an even number of $b$s.\\
-	$S_{ba}$ represents the state where K has at least one $a$ and contains an odd number of $b$s.\\
-	$S_b$ represents the state where K has no $a$ and contains an odd number of $b$s.
-	
-	So, the accepting state is $S_a$ since this state means the input string has at least one $a$ and contains an even number of $b$s.
+	\part{1} DFS could be a solution
 	\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	
 	\question{6}{All The Same?}
-	\part{1} Let $L_2 = \{x \in \sum^{*}: \text{the 2nd-to-last symbol of x is 1}\}$. Draw a DFA with 4 states that accepts $L_2$.
+	\part{1} 
 	
-	{\em Solution}:
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=\linewidth]{figures/4.jpg}
-	\end{figure}
+	\part{2} 
 	
-	$S_\epsilon$ represents the state where there is not a match with the pattern.\\
-	$S_{n-1}$ represents the state where $1$ is found but at the last position.\\
-	$S_{1}$ represents the state where $1$ is found at the second-to-last position, and the last alphabet is $1$.\\
-	$S_0$ represents the state where $1$ is found at the second-to-last position, and the last alphabet is $0$.\\
-	
-	So, the accepting state is $S_1 \text{ and } S_0$ since these states mean the second-to-last symbol of input string is $1$.
-	
-	
-	\part{2} Show that any DFA that correctly recognizes $L_2$ must have at least 4 states.
-	
-	{\em Proof}: Without loss of generality, let us assume for the sake of contradiction that there exist D, a DFA that correctly recognizes $L_2$ using less than 4 states. Let D be a DFA that has 3 states. By the Pigeonhole Principle, if we choose 4 strings over $\sum$, then at least two of those strings must end at the same state $q$. Let $t_i$ and $t_j$ be these 2 strings that satisfies the above. Let $t_0 = \epsilon, t_1 = 1, t_2 = 11, t_3 = 111$. For one of the pairs of strings, the supposed 3-state DFA is forced into the same state for both strings, and $t_{ix} \text{ and } t_{jx}$ must be both accepted or both rejected, for
-	any string x. We want to show, for each possible pair, that this is not true. 
-	
-	First pair, $t_0 \text{ and } t_1$, and choose $x = 1010$. $t_0x = 1010, t_{1x} = 11010$, both rejected.
-	
-	Second pair, $t_0 \text{ and } t_2$, and choose $x = 00$. $t_0x = 00, t_{1x} = 100$, both rejected.
-	
-	Third pair, $t_0 \text{ and } t_3$, and choose $x = 00$. $t_0x = 00, t_{1x} = 100$, both rejected.
-	
-	First pair, $t_1 \text{ and } t_2$, and choose $x = 00$. $t_0x = 00, t_{1x} = 100$, both rejected.
-	
-	First pair, $t_1 \text{ and } t_3$, and choose $x = 00$. $t_0x = 00, t_{1x} = 100$, both rejected.
-	
-	First pair, $t_2 \text{ and } t_3$, and choose $x = 00$. $t_0x = 00, t_{1x} = 100$, both rejected.
-	
-	%So, to check whether a string can be recognize requires 4 steps. 
-	%The first step is to check whether we found 1 yet, because it could the the second last position symbol we need. 
-	%The second step is to check whether the next state is 1 or zero, and there will be two cases to consider, the first case is that the second-to-last symbol of $x$ is 1 and the next symbol is 1 and another case is the second-to-last symbol of $x$ is 1 and the next symbol is 0. We have to change state every time any 0 showed up after we found the first 1. So, we need at least 4 steps to correctly recognize $L_2$. Using pigeonhole principle, the least number of states required is 4 since we showed that 4 different states are needed but the number of states in D is smaller than 4 and there are some patterns of symbols such as 1010 and 1101 that could end up in the same state. Hence, D cannot correctly recognize $L_2$ with only 3 states which is contradicting to what our assumption.
-	
-	Therefore, any DFA that correctly recognizes $L_2$ must have at least 4 states. $\square$
-	\\\\\\\\\\
-	\question{7}{Digit Sum}
-	\part{1} $L = \{x \in \sum^{*}: \texttt{DIGITSUM(x)} \text{is divisible by 3}\}$. Draw a DFA that recognizes $L$. Explain what each of your states represents.
-	
-	{\em Solution}:
-	\begin{figure}[htbp]
-		\centering
-		\includegraphics[width=400px]{figures/5.jpg}
-	\end{figure}
-	
-	Let $n_i$ be the accumulating sum of input string at position $i$.
-	
-	$S_0$ represents the state where $0 \pmod{3} \equiv n_i$.\\
-	$S_1$ represents the state where $1 \pmod{3} \equiv n_i$.\\
-	$S_2$ represents the state where $2 \pmod{3} \equiv n_i$.\\
-	
-	So, the accepting state is $S_0$ since this state means $\texttt{DIGITSUM(x)} \text{is divisible by 3}$ where $x \in \sum^{*}$.
+	\part{3}
 \end{document}
