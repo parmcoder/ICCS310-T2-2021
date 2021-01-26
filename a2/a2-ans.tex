@@ -130,15 +130,22 @@
 	
 	{\em Proof}: Since, $A$ only accept column vectors of size 3 such that the bottom row of w is the sum of the top two rows, it is difficult create a machine that recognize $A$ directly. We know that binary addition start by summing the least significant bits, including transferring a carry when the bit overflow. So, reading the string in reverse will be simpler since we can transfer the carry from the last column to the next column on the left directly. 
 	
-	From the lemma, if $L$ is a regular language, then $L^R$ is also regular. We want to show that $A^R$ is a regular language. Let $L(M) = A^R$. So, $M$ is a machine that recognize $A^R$, else we can call it the binary adder.
+	From the lemma, if $L$ is a regular language, then $L^R$ is also regular. We want to show that $A^R$ is a regular language. Let $L(M) = A^R$. So, $M$ is a machine that recognize $A^R$, else we can call it a binary adder.
 	
-	$M$ is machine that translate each vector into transfer bit and send it to the next state. It only accepts the string that follow its calculation (The sum of first row, second row and carry bit must be equal to the third row). If there is a carry bit, we send it the state which contains carry bit. There are 2 states, $q_0,\text{and }q_1$.
+	$M$ is a machine that translate each vector whether it produce carry bit and send it to the next state. It only accepts the string that follow its calculation (as shown in the transition function). If there is a carry bit, we send it to the state which contains a carry bit. So, there are 2 states, $q_0,\text{and }q_1$.
 	
 	$q_0$ is the accepting state with no carry bit transferred.
 	
 	$q_1$ is the state with a carry bit. (Not done with the addition yet)
 	
-	We can mathematically define a function of LSB addition as $a \odot b = c$ and a function of carry bit as $carry(x,y,z)$. The transition of this machine follows that $x_1 \odot x_2 + \text{ carry bit state } = x_3$ must be satisfied and the next transition depends on the carry bit from $carry(x_1, x_2, \text{ carry bit state }) $ whether it will be $q_0or q_1$. 
+	We can mathematically define a function of LSB addition as $a \odot b = c$ and a function of carry bit as $carry(x,y,z)$ where $a,b,c,x,y,z \in \Sigma$. Besides, $a \odot b = c$ works the same way as XOR logic operator.
+	
+	$$1 \odot 1 = 0$$
+	$$0 \odot 0 = 0$$
+	$$1 \odot 0 = 1$$
+	$$0 \odot 1 = 1$$
+	
+	The transition of this machine follows that $(x_1 \odot x_2) \odot \text{ "carry bit" } = x_3$ must be satisfied and the next transition depends on the carry bit from $carry(x_1, x_2, \text{ "carry bit" }) $ whether it will be $q_0$ or $q_1$. 
 	
 	The transition function is defined as
 	\begin{equation*}
@@ -157,16 +164,17 @@
 	
 	\question{4}{Division Operation?} 
 	
-	$$\frac{L_1}{L_2} = \{x \text{ $|$ } \exists \in L_2 \text{ s.t. } xy \in L_1 \}$$
+	$$\frac{L_1}{L_2} = \{x \text{ $|$ } \exists y \in L_2 \text{ s.t. } xy \in L_1 \}$$
 	Prove that if $L_1$ and $L_2$ are regular, then $\frac{L_1}{L_2}$ is also regular.
 	
 	{\em Proof}: 
-	From a lemma, for every regular expression $R$, there is a DFA that recognizes the language $L(R)$.
-	Suppose $L_1$ and $L_2$ are regular, then there exist DFA $M_1 =(Q,\Sigma,\delta,q_0,F_1)$ which accepts $L_1$ and DFA $M_2 =(Q,\Sigma,\delta,q_0,F_2)$ which accepts $L_2$. We want to show that $L_3 = \frac{L_1}{L_2}$ where $L_1, L_2, L_3 \in \mathbb{I}$.
+	From the lemma, for every regular expression $R$, there is a DFA that recognizes the language $L(R)$.
+	Suppose $L_1$ and $L_2$ are regular, then we let $M_1 =(Q,\Sigma,\delta,q_0,F_1)$ which accepts $L_1$ and DFA $M_2 =(Q,\Sigma,\delta,q_0,F_2)$ which accepts $L_2$. We want to show that there exist $M_3$ that can recognize $L_3 = \frac{L_1}{L_2}$.
 	
-	We have that $Q, \Sigma, \delta, \text{and } q_0$ in $M_1$ and $M_2$ can be shared, just that the accepting states are different. $L_3$ then can be recognized by some DFA $M_3 = (Q,\Sigma,\delta,q_0,F_3)$. We know that $\Sigma$ is a number digit alphabet (0-9). Then, each state is just an integer. So, $\forall x \in F_1, \exists y \in F_2, \text{and } \exists z \in F_3, zy = x$.
+	$L_3$ then can be recognized by some DFA $M_3 = (Q,\Sigma,\delta,q_0,F_3)$. First, each state in $Q$ must make $ \delta^*(q_i, y) \in F_1 ,\forall q_i \in Q, \exists y \in L_2$. By changing the starting state to each state in $Q$, we will have $M_i = (Q,\Sigma,\delta, q_i, F)$, and the machine will be able to recognize some language when using $y \in L_2$. Also, if $L_2 \cap L(M_3) \neq \emptyset$, then $q_i \in F_3$. After that, $x \in \frac{L_1}{L_2}$ implies that $x \in L(M_3)$ and $\exists y \in L_2 \text{ such that } xy \in L_1 $. Since $xy \in L_1$, then $\delta(q_0,x) = s, \exists s \in Q$ and $\delta(s,y) \in F$. Since we used $x$ to change state, $s \in F_3$ and $M_3$ accepts $x$. Thus, $M_3$ exists.
+	%So, $\forall x \in F_1, \exists y \in F_2, \text{and } \exists z \in F_3, zy = x$.
 	
-	From the observation, $L_1$, which is regular, contains accepting states that made of $zy$ from $F_2$ and $F_3$. Also, $L_2$, which is regular, recognized by $M_2$ and we can choose any number to be an accepting state in $F_2$ (As long as we accept at least a number). Since $F_3$ can be any state (number) also, there always exist $z$ that will satisfied $zy = x$. Thus, $M_3$ exists since we can design $F_3$. %I guess?
+	From the observation, $L_1$, which is regular, contains accepting states that made of $xy$ from $L_2$ and $L_3$. Also, $L_2$, which is regular, recognized by $M_2$ and we can choose any number to be an accepting state in $L_2$ (As long as we accept at least a number). Since $L_3$ can be any state (number) also, there always exist $x$ that will satisfied $xy = z$. In fact, if $x \in L(M_3)$, then $x \in \frac{L_1}{L_2}$. Hence, $\frac{L_1}{L_2}$ is regular.
 	
 	Therefore, if $L_1$ and $L_2$ are regular, then $\frac{L_1}{L_2}$ is also regular. $\square$
 	
