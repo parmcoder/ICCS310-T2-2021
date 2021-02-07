@@ -72,7 +72,11 @@
 	\part{1} For every $k \geq 1$, there is an NFA with $k+1$ states that recognizes $C_k$.
 	
 	{\em Proof}: %reverse it -> 
-	Suppose 
+	We want to directly show that there is an NFA with $k+1$ states that recognizes $C_k$. 
+	
+	Suppose there is $G_k = (Q,\Sigma,\delta,q_0,F)$ and each $G_k$ contains $Q = \{s_0, s_1,...,s_k\}$ with each state showing how many of the last $k$ bits that $G_k$ has seen for every $k \geq 1$. Then, let $\delta(s_0,b) = s_0$, $\delta(s_0,a) = \{s_0,s_1\}$, $\delta(s_{i-1},a) = s_i$ and $\delta(s_{i-1},b) = s_i$ for $2 \leq i \leq k$. So, let $q_0 = s_0$ and $F = \{S_k\}$. $G_k$ starts at $s_0$, and it may process any character until $a$ is found. Once, $a$ is found, fork the processes into two and we will get one process starts on $s_0$ and $s_1$ at the same time. Just keep changing state from $s_1$ to $s_k$ on any character after $a$ is found and $G_k$ can accepts the string if and only if there are exactly $k-1$ characters following $a$. The process dies immediately when the number of string exceeds $k$ after the $a$ we found at $j$ position where $0 \leq j \leq n$ where $n$ is the length of string. Hence, $G_k$ exists for all $k \geq 1$.
+	
+	Therefore, for every $k \geq 1$, there is an NFA with $k+1$ states that recognizes $C_k$. $\square$
 	
 	\part{2} If $M$ is a DFA that correctly recognizes $C_k$, then $M$ has at least $2^k$ states.
 	
@@ -115,6 +119,11 @@
 	\part{2} $L_2 = \{xyx^R | x \in \Sigma^*, x \neq \varepsilon\}$ %not regular
 	
 	{\em Proof}: %pumping -> 0 split will break it
+	
+	
+	
+	
+	
 	
 	\question{3}{Nonregular}
 	
