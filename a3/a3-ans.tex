@@ -1,0 +1,134 @@
+% You should title the file with a .tex extension (hw1.tex, for example)
+\documentclass[a4paper, 11pt]{article}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+\newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
+	\noindent{\bf #1: #2} \vspace{0.5em}
+	\hrule \vspace{.10in}}
+\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
+
+\newcommand{\myname}{Possawat Sanorkam}
+\newcommand{\myemail}{possawat2017@hotmail.com}
+\newcommand{\myhwnum}{3}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+
+\pagestyle{fancyplain}
+\lhead{\fancyplain{}{\textbf{HW\myhwnum}}}      % Note the different brackets!
+\rhead{\fancyplain{}{\myname\\ \myemail}}
+\chead{\fancyplain{}{ICCS310}}
+
+\begin{document}
+	
+	\medskip                        % Skip a "medium" amount of space
+	% (latex determines what medium is)
+	% Also try: \bigskip, \littleskip
+	
+	\thispagestyle{plain}
+	\begin{center}                  % Center the following lines
+		{\Large ICCS310: Assignment \myhwnum} \\
+		\myname \\
+		\myemail \\
+		\today \\
+	\end{center}
+	
+	\question{1}{NFA vs. DFA Expressiveness} %don't delete yet:(}
+	
+	\part{1} For every $k \geq 1$, there is an NFA with $k+1$ states that recognizes $C_k$.
+	
+	{\em Proof}: %reverse it -> 
+	Suppose 
+	
+	\part{2} If $M$ is a DFA that correctly recognizes $C_k$, then $M$ has at least $2^k$ states.
+	
+	{\em Proof}: %?
+	
+	\question{2}{Regular or Not} %don't delete yet:(}
+	
+	\part{1} $L_1 = \{xyx^R | x,y \in \Sigma^*, x \neq \varepsilon\}$ %regular
+	
+	{\em Proof}: 
+	
+	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto] 
+	\node[state,initial] (q_0)   {$q_0$}; 
+	\node[state] (q_1) [above right=of q_0] {$q_1$}; 
+	\node[state] (q_2) [below right=of q_0] {$q_2$}; 
+	\node[state,accepting] (q_3) [ right=of q_1] {$q_3$}; 
+	\node[state,accepting] (q_4) [ right=of q_2] {$q_4$}; 
+	\path[->] 
+	(q_0) edge  node {p} (q_1)
+		  edge  node {q} (q_2)
+	(q_1) edge [bend left] node {p} (q_3)
+		  edge [loop above] node {q} ()
+	(q_2) edge [bend left] node {q} (q_4)
+	edge [loop above] node {p} ()
+	(q_3) edge [bend left] node {q} (q_1)
+		  edge [loop above] node {p} ()
+	(q_4) edge [bend left] node {p} (q_2)
+	edge [loop above] node {q} ();
+	
+	\end{tikzpicture}
+	
+	$S_0$ represents the state where first character is not known.\\
+	$S_1$ represents the state where first character is p.\\
+	$S_2$ represents the state where first character is q.\\
+	$S_3$ represents the state where last character is p, accepted.\\
+	$S_4$ represents the state where last character is q, accepted.
+	
+	The idea is that we do not care what is the given $y$, we only care what character starts first and that character must be the ending character since the reverse of $px$ is $xp$ and $qx$ is $xq$ where $x \in \Sigma^*$.
+	
+	\part{2} $L_2 = \{xyx^R | x \in \Sigma^*, x \neq \varepsilon\}$ %not regular
+	
+	{\em Proof}: %pumping -> 0 split will break it
+	
+	\question{3}{Nonregular}
+	
+	\part{1} $L = \{10^{n^2} | n \geq 0\}$ %1 follow with 0 n^2 chars 1 4 9
+	
+	{\em Proof}: %pumping -> 0 split will break it
+
+	\part{2} $E = \{0^{i}x | i \geq 0\, x \in \{0,1\}^*, \text{and } |x| \leq i\}$ %i 0s follow any char of size 0
+
+	{\em Proof}: %pumping -> 0 split will break it
+	
+	\question{4}{HackerRank Challenge} 
+	
+	My username is Possawat2017. All problems solved.
+	
+	
+\end{document}

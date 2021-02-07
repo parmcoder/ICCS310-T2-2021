@@ -183,45 +183,23 @@
 	
 	{\em Solution}: Every finite-state machine is simply a directed graph, then we can check it by performing this algorithm.
 	
-	Let $strs = \Sigma^*$, given size of $\Sigma$ is a constant. Also, $E$ = edges that we can refer to $\delta$.
+	Let $strs = \Sigma^*$, given size of $\Sigma$ is a constant. Also, $E$ = edges that we can refer to $\delta$. If it is impossible to reject, then $M$ accepts everything. If we can get other states that are not included in F, then we are guaranteed that some strings will be rejected for sure. We can simply do a BFS to check it.
 	
-	First, we design a function called $is\_recognize$ that check if a string can be recognized from $M$ by forming a directed graph using $M$, which is the given machine, then perform a traversal to get the final state (cycles are ignored since we stopped on the last character). This would take $O(|Q|+|E|)$ to create the graph. Suppose we have infinite amount of memory, then we can store this graph to use later. If any string rejected, then we set the $accept$ to false, which means machine M rejects $\Sigma^*$. Hence, assuming amortized running time for getting an item from a hash set is $O(1)$, then the time complexity would be $O(str)+O(1)+O(1) = O(str)$.
+	The algorithm goes like this.
 	
-	Second, we make sure that we can enumerate through $strs$. If we have infinite power of computation, we can perform $is\_recognize$ on each string in $strs$ at the same time. Then, the time complexity would be $O(str)$. If not, we can iterate on each string instead, which will definitely take longer time. Let $ns =$ number of strings in $strs$, it would take $O(str*{ns})$.
+	\begin{BVerbatim}
+1. Create a graph of DFA from M, using Q as vertices and delta as edges.
+2. Perform an efficient Breadth-First-Search and check if there are accepting states.
+	- BFS start from any s in sigma (Start with any alphabet).
+	- Visisted states will be skipped and not visited again.
+	- Stop when there are no other states to go next.
+3. If the number of accepting states is less than the number of states, 
+   then some strings will be rejected. Else, M will accept anything.
+	\end{BVerbatim}
 	
-	Finally, return whether we accept it or not. Total time complexity $O(|Q|+|E|+str)$ in parallel or else $O(|Q|+|E|+str*{ns})$.
-	\\\\\\
-	The pseudo-code is given below.
+	The time complexity of this algorithm is $O(|Q|)$ since the cost of BFS depends on the number of states. The only trade-off is that there must be enough memory to store all the states, so we will assume that we have unlimited resources this time.
 	
-\begin{Verbatim}[numbers=left]
-//global variables
-G = create_graph(M) //a graph using Q as vertices and E from DFA
-accept = true //assume that this variable is thread-safe globally
-is_recognize(str){
-	count = 0 //First character
-	n = length of str - 1
-	current_state = str[count]
-	while(count < n){
-		next_char = str[count+1]
-		
-		//using map of edges of current_state to go to next state
-		current_state = go_next(current_state,next_char)
-		count++ //increment count
-	}
-	if(current_state not in F){
-		accept = false 
-		//if there is any rejection, reject it globally.
-	}
-}
-
-accept_all(strs){
-	//parallel mapping is_recognize on every string
-	strs.par_map(is_recognize)
-	return accept
-}
-\end{Verbatim}
-
-%I tried to make one that runs in polynomial time in |Q| assuming the size of Σ is constant, but it is so difficult.
+	
 	
 	
 	\question{6}{All The Same?}
