@@ -80,7 +80,10 @@
 	
 	\part{2} If $M$ is a DFA that correctly recognizes $C_k$, then $M$ has at least $2^k$ states.
 	
-	{\em Proof}: %?
+	{\em Proof}: 
+	Consider $\Sigma = \{a,b\}$, we have that there are 2 possible characters, which is $a$ or $b$. Then, let $x,y \in \Sigma^*$ where $|x| = |y| = k$ and $x_i \neq y_i$ for some $0 \leq i \leq k$. If $x_i = a$, then $y_i = b$, vice versa. So, we let $z = b^{k-1}$. Then, $z$ distinguishes $x$ and $y$ as exactly one of $xz$ and $yz$ has the $k^{th}$ character from the end as $a$.
+	
+	Since there are $2^k$ characters of length k, which are all mutually distinguishable by the above argument, any DFA for the language must have at least $2^k$ states.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	\question{2}{Regular or Not} %don't delete yet:(}
 	
@@ -116,7 +119,7 @@
 	
 	The idea is that we do not care what is the given $y$, we only care what character starts first and that character must be the ending character since the reverse of $px$ is $xp$ and $qx$ is $xq$ where $x \in \Sigma^*$.
 	
-	\part{2} $L_2 = \{xyx^R | x \in \Sigma^*, x \neq \varepsilon\}$ %not regular
+	\part{2} $L_2 = \{xx^R | x \in \Sigma^*, x \neq \varepsilon\}$ %not regular
 	
 	{\em Proof}: %pumping -> 0 split will break it
 	
@@ -130,6 +133,26 @@
 	\part{1} $L = \{10^{n^2} | n \geq 0\}$ %1 follow with 0 n^2 chars 1 4 9
 	
 	{\em Proof}: %pumping -> 0 split will break it
+	Assume for the sake of contradiction that L is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
+	
+	-   (1) $xy^iz \in L$ for every $i \geq 0$;
+		
+	-	(2) $|y| > 0$; and
+		
+	-	(3) $|xy| \leq n$.
+	
+	Consider $w = 10^s$ where $s = n^2$. Then, $x = 10000$, $y = 0^j$, and $z = 0^k$. 
+
+
+
+
+
+
+
+
+
+
+
 
 	\part{2} $E = \{0^{i}x | i \geq 0\, x \in \{0,1\}^*, \text{and } |x| \leq i\}$ %i 0s follow any char of size 0
 
