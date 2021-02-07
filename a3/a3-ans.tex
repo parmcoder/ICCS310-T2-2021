@@ -83,11 +83,11 @@
 	{\em Proof}: 
 	Consider $\Sigma = \{a,b\}$, we have that there are 2 possible characters, which is $a$ or $b$. Then, let $x,y \in \Sigma^*$ where $|x| = |y| = k$ and $x_i \neq y_i$ for some $0 \leq i \leq k$. If $x_i = a$, then $y_i = b$, vice versa. So, we let $z = b^{k-1}$. Then, $z$ distinguishes $x$ and $y$ as exactly one of $xz$ and $yz$ has the $k^{th}$ character from the end as $a$.
 	
-	Since there are $2^k$ characters of length k, which are all mutually distinguishable by the above argument, any DFA for the language must have at least $2^k$ states.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	Since there are $2^k$ characters of length k, which are all mutually distinguishable by the above argument, any DFA for the language must have at least $2^k$ states. $\square$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
 	\question{2}{Regular or Not} %don't delete yet:(}
 	
-	\part{1} $L_1 = \{xyx^R | x,y \in \Sigma^*, x \neq \varepsilon\}$ %regular
+	\part{1} $L_1 = \{xyx^R | x,y \in \Sigma^*, x \neq \varepsilon\}$ is regular
 	
 	{\em Proof}: 
 	
@@ -119,13 +119,18 @@
 	
 	The idea is that we do not care what is the given $y$, we only care what character starts first and that character must be the ending character since the reverse of $px$ is $xp$ and $qx$ is $xq$ where $x \in \Sigma^*$.
 	
-	\part{2} $L_2 = \{xx^R | x \in \Sigma^*, x \neq \varepsilon\}$ %not regular
+	\part{2} $L_2 = \{xx^R | x \in \Sigma^*, x \neq \varepsilon\}$ is not regular
 	
 	{\em Proof}: %pumping -> 0 split will break it
+	Assume for the sake of contradiction that L is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
 	
+	-   (1) $xy^iz \in L_2$ for every $i \geq 0$;
 	
+	-	(2) $|y| > 0$; and
 	
+	-	(3) $|xy| \leq n$.
 	
+	Consider $w = pqq^sp$. Let $|xy| \leq n$ and $|y| = i$. Then, $x = pq$, $y = q^i$, and $z = p$. This implies that $xyyz \notin L_2$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in $L_2$! Hence, $L_2$ is not regular. $\square$
 	
 	
 	\question{3}{Nonregular}
@@ -141,22 +146,26 @@
 		
 	-	(3) $|xy| \leq n$.
 	
-	Consider $w = 10^s$ where $s = n^2$. Then, $x = 10000$, $y = 0^j$, and $z = 0^k$. 
+	Consider $w = 10^s$ where $s = n^2$. Let $|xy| \leq n$, $k > 0$ and $|y| = i$. Then, $x = 10000$, $y = 0^i$, and $z = 0^k$. So, $y$ itself consists only of 0s. This means, $xyyz$ does not have the number of 0s equal to $n^2$.
+	$$|xyyz| = |xz| + 2|y| = (n^2 - i+1) + 2i = n^2 +i$$
+	where $n^2 + i < n^2 + n < (n+1)^2$ and $n^2 + i > n^2$. Hence, $n^2 < n^2 + i < (n+1)^2$.
+	
+	Then, $n^2 + k$ is not a perfect square. This implies that $xyyz \notin L$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in L! Hence, L is not regular. $\square$
 
 
 
-
-
-
-
-
-
-
-
-
-	\part{2} $E = \{0^{i}x | i \geq 0\, x \in \{0,1\}^*, \text{and } |x| \leq i\}$ %i 0s follow any char of size 0
+	\part{2} $E = \{0^{i}x | i \geq 0, x \in \{0,1\}^*, \text{and } |x| \leq i\}$ %i 0s follow any char of size 0
 
 	{\em Proof}: %pumping -> 0 split will break it
+	Assume for the sake of contradiction that E is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
+	
+	-   (1) $xy^iz \in E$ for every $i \geq 0$;
+	
+	-	(2) $|y| > 0$; and
+	
+	-	(3) $|xy| \leq n$.
+	
+	Consider $w = 00^s1^s1$. Let $|xy| \leq n$ and $|y| = s$. Then, $x = 00^s$, $y = 1^s$, and $z = 1$. So, $y$ itself consists only of 1s. This means $|yyz| > |x|$, but $w \in E$ when $|yyz| \leq |x|$. This implies that $xyyz \notin E$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in E! Hence, E is not regular. $\square$
 	
 	\question{4}{HackerRank Challenge} 
 	
