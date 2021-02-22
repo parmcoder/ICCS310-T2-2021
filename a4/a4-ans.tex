@@ -68,108 +68,112 @@
 	\end{center}
 	
 	\question{1}{Eh? They Have The Same Cardinality?} %don't delete yet:(}
+	Prove the following statements using rigorous mathematical reasoning:
 	
-	\part{1} For every $k \geq 1$, there is an NFA with $k+1$ states that recognizes $C_k$.
+	\part{1} $|[0,\frac{1}{2})| = |[0,1)|$
 	
-	{\em Proof}: %reverse it -> 
-	We want to directly show that there is an NFA with $k+1$ states that recognizes $C_k$. 
+	{\em Proof}:
 	
-	Suppose there is $G_k = (Q,\Sigma,\delta,q_0,F)$ and each $G_k$ contains $Q = \{s_0, s_1,...,s_k\}$ with each state showing how many of the last $k$ bits that $G_k$ has seen for every $k \geq 1$. Then, let $\delta(s_0,b) = s_0$, $\delta(s_0,a) = \{s_0,s_1\}$, $\delta(s_{i-1},a) = s_i$ and $\delta(s_{i-1},b) = s_i$ for $2 \leq i \leq k$. So, let $q_0 = s_0$ and $F = \{S_k\}$. $G_k$ starts at $s_0$, and it may process any character until $a$ is found. Once, $a$ is found, fork the processes into two and we will get one process starts on $s_0$ and $s_1$ at the same time. Just keep changing state from $s_1$ to $s_k$ on any character after $a$ is found and $G_k$ can accepts the string if and only if there are exactly $k-1$ characters following $a$. The process dies immediately when the number of string exceeds $k$ after the $a$ we found at $j$ position where $0 \leq j \leq n$ where $n$ is the length of string. Hence, $G_k$ exists for all $k \geq 1$.
 	
-	Therefore, for every $k \geq 1$, there is an NFA with $k+1$ states that recognizes $C_k$. $\square$
-	
-	\part{2} If $M$ is a DFA that correctly recognizes $C_k$, then $M$ has at least $2^k$ states.
+	\part{2} $|[0,1)| = |(-1,1)|$
 	
 	{\em Proof}: 
-	Consider $\Sigma = \{a,b\}$, we have that there are 2 possible characters, which is $a$ or $b$. Then, let $x,y \in \Sigma^*$ where $|x| = |y| = k$ and $x_i \neq y_i$ for some $0 \leq i \leq k$. If $x_i = a$, then $y_i = b$, vice versa. So, we let $z = b^{k-1}$. Then, $z$ distinguishes $x$ and $y$ as exactly one of $xz$ and $yz$ has the $k^{th}$ character from the end as $a$.
 	
-	Since there are $2^k$ characters of length k, which are all mutually distinguishable by the above argument, any DFA for the language must have at least $2^k$ states. $\square$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	\part{3} $|[0,1)| = |\mathbb{R}|$
+
+	{\em Proof}: 	
 	
 	\question{2}{The Power Set of A } %don't delete yet:(}
 	
-	\part{1} $L_1 = \{xyx^R | x,y \in \Sigma^*, x \neq \varepsilon\}$ is regular
+	\part{1} Prove that $|2^A| = |\{0, 1\}^A|$.
 	
 	{\em Proof}: 
 	
-	\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto] 
-	\node[state,initial] (q_0)   {$q_0$}; 
-	\node[state] (q_1) [above right=of q_0] {$q_1$}; 
-	\node[state] (q_2) [below right=of q_0] {$q_2$}; 
-	\node[state,accepting] (q_3) [ right=of q_1] {$q_3$}; 
-	\node[state,accepting] (q_4) [ right=of q_2] {$q_4$}; 
-	\path[->] 
-	(q_0) edge  node {p} (q_1)
-		  edge  node {q} (q_2)
-	(q_1) edge [bend left] node {p} (q_3)
-		  edge [loop above] node {q} ()
-	(q_2) edge [bend left] node {q} (q_4)
-	edge [loop above] node {p} ()
-	(q_3) edge [bend left] node {q} (q_1)
-		  edge [loop above] node {p} ()
-	(q_4) edge [bend left] node {p} (q_2)
-	edge [loop above] node {q} ();
+	\part{2} Prove that $|A| < |\{0, 1\}^A|$ and conclude that $|A| < |2^A|$.
 	
-	\end{tikzpicture}
-	
-	$S_0$ represents the state where first character is not known.\\
-	$S_1$ represents the state where first character is p.\\
-	$S_2$ represents the state where first character is q.\\
-	$S_3$ represents the state where last character is p, accepted.\\
-	$S_4$ represents the state where last character is q, accepted.
-	
-	The idea is that we do not care what is the given $y$, we only care what character starts first and that character must be the ending character since the reverse of $px$ is $xp$ and $qx$ is $xq$ where $x \in \Sigma^*$.
-	
-	\part{2} $L_2 = \{xx^R | x \in \Sigma^*, x \neq \varepsilon\}$ is not regular
-	
-	{\em Proof}: %pumping -> 0 split will break it
-	Assume for the sake of contradiction that L is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
-	
-	-   (1) $xy^iz \in L_2$ for every $i \geq 0$;
-	
-	-	(2) $|y| > 0$; and
-	
-	-	(3) $|xy| \leq n$.
-	
-	Consider $w = pqq^sp$. Let $|xy| \leq n$ and $|y| = i$. Then, $x = pq$, $y = q^i$, and $z = p$. This implies that $xyyz \notin L_2$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in $L_2$! Hence, $L_2$ is not regular. $\square$
+	{\em Proof}: 
 	
 	
-	\question{3}{Nonregular}
+	\question{3}{Hamming Code}
 	
-	\part{1} $L = \{10^{n^2} | n \geq 0\}$ %1 follow with 0 n^2 chars 1 4 9
+	Consider applying the Hamming coding scheme to send 8 bits of data. This will require 4 parity bits, so an encoded code word in this scheme is 12 bits long.
 	
-	{\em Proof}: %pumping -> 0 split will break it
-	Assume for the sake of contradiction that L is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
+	\part{1} If the data bits are $d_1,d_2,d_3...d_8$ , what is $\beta_2$ in terms of $d_i$’s?
 	
-	-   (1) $xy^iz \in L$ for every $i \geq 0$;
-		
-	-	(2) $|y| > 0$; and
-		
-	-	(3) $|xy| \leq n$.
+	{\em Answer}: 
 	
-	Consider $w = 10^s$ where $s = n^2$. Let $|xy| \leq n$, $k > 0$ and $|y| = i$. Then, $x = 10000$, $y = 0^i$, and $z = 0^k$. So, $y$ itself consists only of 0s. This means, $xyyz$ does not have the number of 0s equal to $n^2$.
-	$$|xyyz| = |xz| + 2|y| = (n^2 - i+1) + 2i = n^2 +i$$
-	where $n^2 + i < n^2 + n < (n+1)^2$ and $n^2 + i > n^2$. Hence, $n^2 < n^2 + i < (n+1)^2$.
+	\part{2} Encode the following 8-bit data: $01101010$.
 	
-	Then, $n^2 + k$ is not a perfect square. This implies that $xyyz \notin L$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in L! Hence, L is not regular. $\square$
+	{\em Answer}: 
+	
+	\part{3} Assuming that at most a single single bit flip, decide the following codewords (indicate also whether there was any error):
+	
+	{\em Answer}: 
+	
+	(i) 010011111000
+	
+	(ii) 011101010010
+	\\\\\\
+	
+	\question{4}{Same Number of 0s and 1s}
+	
+	Consider the language $L = \{w \in \{0, 1\}^{*} | \text{ w contains an equal number of 0s and 1s } \}$. Show that L is (Turing) decidable by providing a TM that decides it (a medium-level detail is preferred).
+	
+	{\em Proof}: 
+	
+	
+	\question{5}{Infinite DFA}
+	
+	Show that the following language is (Turing) decideable:
+	$$ \text{IDFA} = \{\langle M \rangle| \text{ M is a DFA and L(M) is an infinite language  } \}.$$
+	
+	{\em Proof}: 
+	
+	\question{6}{Lucky 9}
+	
+	\part{1} Let $L_1 \subseteq \Sigma^*$ be defined as
+	
+	$$
+	L_1 = \begin{cases} 
+	\varnothing & \text{ if $2^{74207281}-1$ is prime} \\
+	\{99\} & \text{ if $2^{74207281}-1$ is not prime}
+	\end{cases}
+	$$
+	
+	Prove that $L_1$ is (Turing) decidable.
+	
+	{\em Proof}: 
+	
+	\part{2} Let $L_2 \subseteq \Sigma^*$ be defined as
+	$$
+ 	w \in L_2 \iff \text{ $w$ appears somewhere (not necessarily consecutively) in the decimal expansion of $\pi$}
+	$$
+	Prove that $L_2$ is (Turing) decidable.
+	
+	
+	{\em Proof}: 
+	
+	\question{7}{$\beta$-reduction}
+	
+	\part{1} 
+	
+	{\em Solution}: 
+	
+	\part{2} 
+	
+	{\em Solution}: 
+	
+	\question{8}{Fibonacci}
+	Using the functions we have developed (e.g., pred, if\_then\_else, mult, add, etc.), write
+	down an explicit $ \lambda $-term fib such that
+	$fib \bar{n} =_\beta \bar{f_(n)}$.
+	{\em Solution}: 
+	
+	\question{9}{Power Of 2}
 
-
-
-	\part{2} $E = \{0^{i}x | i \geq 0, x \in \{0,1\}^*, \text{and } |x| \leq i\}$ %i 0s follow any char of size 0
-
-	{\em Proof}: %pumping -> 0 split will break it
-	Assume for the sake of contradiction that E is regular. Then according to pumping lemma there exist an integer $n$ such that for every string $w$ where $|w| \geq n$, we can break $w$ into three strings $w = xyz$ such that:
+	Implement a  $ \lambda $-term for the $pow(n) = 2^n$
 	
-	-   (1) $xy^iz \in E$ for every $i \geq 0$;
-	
-	-	(2) $|y| > 0$; and
-	
-	-	(3) $|xy| \leq n$.
-	
-	Consider $w = 00^s1^s1$. Let $|xy| \leq n$ and $|y| = s$. Then, $x = 00^s$, $y = 1^s$, and $z = 1$. So, $y$ itself consists only of 1s. This means $|yyz| > |x|$, but $w \in E$ when $|yyz| \leq |x|$. This implies that $xyyz \notin E$. So, we found a contradiction to the lemma’s assertion that $xyyz$ must be in E! Hence, E is not regular. $\square$
-	
-	\question{4}{HackerRank Challenge} 
-	
-	My username is Possawat2017. All problems solved.
+	{\em Solution}: 
 	
 	
 \end{document}
