@@ -217,13 +217,16 @@
 	down an explicit $ \lambda $-term fib such that
 	$\overline{fib}$ $\overline{n} =_\beta \overline{f(n)}$.
 	
-	{\em Solution}: 
+	{\em Solution}: $\overline{fib}$ $\overline{n} =_\beta \overline{f(n)}$.
 	
 	\question{9}{Power Of 2}
 
 	Implement a  $ \lambda $-term for the $pow(n) = 2^n$
 	
-	{\em Solution}: 
+	{\em Solution}: $\overline{pow}$ $\overline{n} 
+	=(\lambda z. \lambda y. (zy) \overline{n}) \overline{2}
+	=(\lambda z. \lambda y. (zy) \lambda f x. f^n x) \lambda f.\lambda x.(f (f x))
+	$
 	
 	
 \end{document}
