@@ -72,17 +72,24 @@
 	
 	\part{1} $|[0,\frac{1}{2})| = |[0,1)|$
 	
-	{\em Proof}:
+	{\em Proof}: We want to show that $|[0,\frac{1}{2})| = |[0,1)|$ by direct proof.  By definition, let A and B be sets. Say A and B have the same cardinality (size), denoted by $|A| = |B|$, if there exists a bijection between them. 
+	
+	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f:A \rightarrow B$, $A = [0,\frac{1}{2})$, and $B = [0,1)$. Then, let $f(x) = 2x$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. Hence, $|A| = |B|$. Therefore, $|[0,\frac{1}{2})| = |[0,1)|$. $\square$
 	
 	
 	\part{2} $|[0,1)| = |(-1,1)|$
 	
-	{\em Proof}: 
+	{\em Proof}: We want to show that $|[0,1)| = |(-1,1)|$ by direct proof. By definition, let A and B be sets. Say A and B have the same cardinality (size), denoted by $|A| = |B|$, if there exists a bijection between them. In addition, $|A|=|B|$ if and only if $|A| \leq |B|$ and $|B| \leq |A|$. 
+	
+	We want to show that there exist functions $f$ that is injective and $g$ that is also injective. Let $f:A \rightarrow B$, $g:B \rightarrow A$, $A = [0,1)$, and $B = (-1,1)$. Then, let $f(x) = x$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. 
+	Then, let $g(x) = \frac{(x+1)}{2}$.  Let $b \in B$ and $b' \in B$. From observation, $g(b)$ is unique for any arbitrary $b$. We have that $ ( \forall b \neq b')[ f(b) \neq f(b')]$, so $g$ is injective. Hence, $|A| \leq |B|$ and $|B| \leq |A|$ which implies that $|A| = |B|$. Therefore, $|[0,1)| = |(-1,1)|$. $\square$
 	
 	\part{3} $|[0,1)| = |\mathbb{R}|$
 
-	{\em Proof}: 	
+	{\em Proof}: We want to show that $|[0,1)| = |\mathbb{R}|$ by direct proof. Besides, we have that $|[0,1)| = |(-1,1)|$ which means we can show that $|\mathbb{R}| = |(-1,1)|$ instead. Say A and B have the same cardinality (size), denoted by $|A| = |B|$, if there exists a bijection between them. In addition, $|A|=|B|$ if and only if $|A| \leq |B|$ and $|B| \leq |A|$. 
 	
+	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f: A \rightarrow \mathbb{R}$, and $A = (-1,1)$. Then, let $f(x) = \frac{x}{1-x^2}$. This function is continuous on domain $A$ when $x \neq 1$ and $x \neq -1$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |\mathbb{R}|$ or $|\mathbb{R}| = |(-1,1)|$. Hence, $|\mathbb{R}| = |(-1,1)|$ implies that $|\mathbb{R}| = |[0,1)|$ also. Therefore, $|[0,1)| = |\mathbb{R}|$.
+		
 	\question{2}{The Power Set of A } %don't delete yet:(}
 	
 	\part{1} Prove that $|2^A| = |\{0, 1\}^A|$.
