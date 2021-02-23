@@ -88,17 +88,17 @@
 
 	{\em Proof}: We want to show that $|[0,1)| = |\mathbb{R}|$ by direct proof. Besides, we have that $|[0,1)| = |(-1,1)|$ which means we can show that $|\mathbb{R}| = |(-1,1)|$ instead. Say A and B have the same cardinality (size), denoted by $|A| = |B|$, if there exists a bijection between them. In addition, $|A|=|B|$ if and only if $|A| \leq |B|$ and $|B| \leq |A|$. 
 	
-	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f: A \rightarrow \mathbb{R}$, and $A = (-1,1)$. Then, let $f(x) = \frac{x}{1-x^2}$. This function is continuous on domain $A$ when $x \neq 1$ and $x \neq -1$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |\mathbb{R}|$ or $|\mathbb{R}| = |(-1,1)|$. Hence, $|\mathbb{R}| = |(-1,1)|$ implies that $|\mathbb{R}| = |[0,1)|$ also. Therefore, $|[0,1)| = |\mathbb{R}|$.
+	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f: A \rightarrow \mathbb{R}$, and $A = (-1,1)$. Then, let $f(x) = \frac{x}{1-x^2}$. This function is continuous on domain $A$ when $x \neq 1$ and $x \neq -1$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |\mathbb{R}|$ or $|\mathbb{R}| = |(-1,1)|$. Hence, $|\mathbb{R}| = |(-1,1)|$ implies that $|\mathbb{R}| = |[0,1)|$ also. Therefore, $|[0,1)| = |\mathbb{R}|$. $\square$
 		
 	\question{2}{The Power Set of A } %don't delete yet:(}
 	
 	\part{1} Prove that $|2^A| = |\{0, 1\}^A|$.
 	
-	{\em Proof}: 
+	{\em Proof}: %there is a function that is bijective here, recieve a set of A and return a string.
 	
 	\part{2} Prove that $|A| < |\{0, 1\}^A|$ and conclude that $|A| < |2^A|$.
 	
-	{\em Proof}: 
+	{\em Proof}: %the permutation of strings will exponentially grow larger as A increase
 	
 	
 	\question{3}{Hamming Code}
@@ -107,21 +107,52 @@
 	
 	\part{1} If the data bits are $d_1,d_2,d_3...d_8$ , what is $\beta_2$ in terms of $d_i$’s?
 	
-	{\em Solution}: 
+	{\em Solution}: $\beta_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7$
 	
 	\part{2} Encode the following 8-bit data: $01101010$.
 	
-	{\em Solution}: 
+	{\em Solution}: Hamming Code = $(\beta_1 \beta_2 d_1 \beta_4 d_2 d_3 d_4 \beta_8 d_5 d_6 d_7 d_8)$
+	
+	Encode $01101010$ by adding the parity bits as followed
+	
+	\begin{eqnarray}
+	\beta_1 = d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 1 \oplus 1 &=& 1\\
+	\beta_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7  = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 1 &=& 0\\
+	\beta_4 = d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 &=& 0\\
+	\beta_8 = d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 1 \oplus 0 &=& 0
+	\end{eqnarray}
+	
+	Therefore, encoded bits are $1 0 0 0 110 0 1010$
 	
 	\part{3} Assuming that at most a single single bit flip, decide the following codewords (indicate also whether there was any error):
 	
 	{\em Solution}: 
+	Hamming Code = $(\beta_1 \beta_2 d_1 \beta_4 d_2 d_3 d_4 \beta_8 d_5 d_6 d_7 d_8)$
 	
 	(i) 010011111000
 	
-	(ii) 011101010010
-	\\\\\\
+	So, $\beta_1 = 0, \beta_2 = 1, \beta_4 = 0,$and $\beta_8 = 1$.
+	\begin{eqnarray}
+	\beta_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 0 \oplus 1 \oplus 1 \oplus 1 \oplus 0 &=& 1\\
+	\beta_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 0 \oplus 1 \oplus 1 \oplus 0 \oplus 0 &=& 1\\
+	\beta_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 0 \oplus 1 \oplus 1\oplus 1 \oplus 0 &=& 1\\
+	\beta_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 &=& 0
+	\end{eqnarray}
 	
+	Error Position is $0111_2 = 7$. Corrected Data is $010011011000$.
+	
+	(ii) 011101010010
+	
+	So, $\beta_1 = 0, \beta_2 = 1, \beta_4 = 1,$and $\beta_8 = 1$.
+	\begin{eqnarray}
+	\beta_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 0 \oplus 0 &=& 1\\
+	\beta_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 &=& 1\\
+	\beta_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 0 \oplus 1\oplus 0 \oplus 0 &=& 0\\
+	\beta_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 0 \oplus 1 \oplus 0 &=& 0
+	\end{eqnarray}
+	
+	Error Position is $0011_2 = 3$. Corrected Data is $010101010010$.
+		
 	\question{4}{Same Number of 0s and 1s}
 	
 	Consider the language $L = \{w \in \{0, 1\}^{*} | \text{ w contains an equal number of 0s and 1s } \}$. Show that L is (Turing) decidable by providing a TM that decides it (a medium-level detail is preferred).
