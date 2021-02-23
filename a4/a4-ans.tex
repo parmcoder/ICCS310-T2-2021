@@ -165,7 +165,7 @@
 	Show that the following language is (Turing) decideable:
 	$$ \text{IDFA} = \{\langle M \rangle| \text{ M is a DFA and L(M) is an infinite language  } \}.$$
 	
-	{\em Proof}: We want to show that $\text{IDFA}$ is decidable. So, we will construct a TM $T$ that decides $\text{IDFA}$. For all DFAs $M$, we want $T(\langle M \rangle)$ to accepts if $L(M)$ is infinite language, else it will reject.
+	{\em Proof}: We want to show that $\text{IDFA}$ is decidable. So, we will construct a TM $T$ that decides $\text{IDFA}$. For all DFAs $M$, we want $T(\langle M \rangle)$ to accepts if $L(M)$ is infinite language, else it will reject. %reading vicky's ans
 	
 	\question{6}{Lucky 9}
 	
@@ -193,13 +193,24 @@
 	
 	\question{7}{$\beta$-reduction}
 	
-	\part{1} 
+	\part{1} $(\lambda z.z)(\lambda z.zz)(\lambda z.z y)$
 	
-	{\em Solution}: 
+	{\em Solution}:
 	
-	\part{2} 
+	\begin{eqnarray}
+	 (\lambda z.z)(\lambda z.zz)(\lambda z.z y) &\rightarrow_\beta&  (\lambda z.zz)(\lambda z.z y)\\
+	  &\rightarrow_\beta&  (\lambda z.z y)(\lambda z.z y)\\	  
+	  &\rightarrow_\beta&  (\lambda z.z y)y\\
+	  &\rightarrow_\beta&  yy
+	\end{eqnarray}
 	
-	{\em Solution}: 
+	\part{2} $(((\lambda x.\lambda y.(x y))(\lambda y.y))w)$
+	
+	{\em Solution}: \begin{eqnarray}
+	((  (\lambda x.\lambda y.(x y)) (\lambda y.y) )w) &\rightarrow_\beta&  
+    (  \lambda y.(x y))w \\
+	&\rightarrow_\beta&  xw
+	\end{eqnarray}
 	
 	\question{8}{Fibonacci}
 	Using the functions we have developed (e.g., pred, if\_then\_else, mult, add, etc.), write
