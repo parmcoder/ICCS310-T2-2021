@@ -99,7 +99,7 @@
 	{\em Proof}: %there is a function that is bijective here, recieve a set of A and return a string.
 	We want to show that $|2^A| = |\{0, 1\}^A|$ by direct proof. Say K and B have the same cardinality (size), denoted by $|K| = |B|$, if there exists a bijection between them. In addition, $|K|=|B|$ if and only if $|K| \leq |B|$ and $|B| \leq |K|$. 
 	
-	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f:K \rightarrow B$, $g_k:A \rightarrow \{1,0\}$, $K = 2^A$, $a \in A, k \in K$ and $B = \{0, 1\}^A$. Then, let 
+	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f:K \rightarrow B$, $g_k: K \rightarrow \{1,0\}$, $K = 2^A$, $a \in A, k \in K$ and $B = \{0, 1\}^A$. Then, let 
 	$$f(x) =  \text{binary array of length $|A|$ where each bit represents the presence of $a$ in $x$}$$
 	Besides, we say that binary array is just a tuple of $g_k(x)$.
 	$$f(x) =  (g_k(x) | k \in A)$$
@@ -109,7 +109,7 @@
 	0 & \text{ if $k \notin x$}
 	\end{cases} $$
 	
-	So, we have a function that map a set $a$ and represents it in a tuple of bits like ($1,0,...$) of length $|A|$.
+	So, we have the function that map a set $a$ and represents it in a tuple of bits like ($1,0,...$) of length $|A|$.
 	Let $i \in K$ and $i' \in K$. From observation, $f(i)$ is unique for any arbitrary $i$. Besides, we can map all the permutation of binary string to each set. We have that $ ( \forall i \neq i')[ f(i) \neq f(i')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. The upper bound of $f(x)$ is $f(A) = (1,1,...,1)$ which is a tuple of 1s with length of $|A|$ and the lower bound of $f(x)$ is $f(\emptyset) = (0,0,...,0)$ which is a tuple of 0s with length of $|A|$. So, we can cover all element in $B$.
 	We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |B|$. Therefore,  $|2^A| = |\{0, 1\}^A|$. $\square$.
 	
@@ -117,8 +117,33 @@
 	
 	{\em Proof}: %the permutation of strings will exponentially grow larger as A increase
 	Let A be a nonempty set, though it is potentially countably infinite.
-	We want to show that $|\{0, 1\}^A|$ is not countable.
+	We want to show that $|\{0, 1\}^A|$ is not countable and then show that $|A| < |\{0, 1\}^A|$.
 	
+	Assume for the sake of contradiction that $|\{0, 1\}^A|$ is countable, so $|A| \geq |\{0, 1\}^A|$. This means, there exists a
+	surjective function $f : A \rightarrow \{0, 1\}^A$. Define the following string $d \in \{0, 1\}^A$ so that for $i = 0, 1, 2, . . . ,$
+	
+	$$d[i] = 1 - f(i)[i]$$ that is, $d[i]$ is taking the $i$-th bit of the string given by $f(i)$ and negating it. We’ll show that $d$ differs from $f (k)$ for
+	every $k \in N$. In particular, they disagree on the k-th position, i.e., $d[k] \neq f(k)[k]$. Hence, $f$ cannot possibly be a
+	surjective function from $A \rightarrow \{0, 1\}^A$, so it is a contradiction to our assumption.
+	
+	Next, we want to show that there exist $g: A \rightarrow \{0, 1\}^A$ such that $g$ is injective. We have that $A \subset 2^A$.  Since  $A \subset 2^A$ , we have that $g: A \rightarrow \{0, 1\}^A$ is
+	$$g(x) =  \text{binary array of length $|A|$ where each bit represents the presence of $a$ in $x$}$$
+	where $a \in A$.
+	
+	Besides, we say that binary array is just a tuple of $s_k(x)$, where $s_k: A \rightarrow \{1,0\}$, and $k \in A$ .
+	$$f(x) =  (s_k(x) | k \in A)$$
+	Also, let 
+	$$g_k(x) = \begin{cases} 
+	1 & \text{ if $k \neq x$} \\
+	0 & \text{ if $k = x$}
+	\end{cases} $$
+	
+	So, we have the function that map an element $a$ and represents it in a tuple of bits like ($1,0,...$) of length $|A|$.
+	Let $i \in A$ and $i' \in A$. From observation, $f(i)$ is unique for any arbitrary $i$. Since we only take on element of $A$ into the function, we will always get a tuple with only single bit of $1$, meaning that only one element existed. We have that $ ( \forall i \neq i')[ f(i) \neq f(i')]$, so $f$ is injective. From earlier, we showed that $|A| \ngeq |\{0, 1\}^A|$. Hence,  $|A| < |\{0, 1\}^A|$.
+	
+	Since we showed that $|2^A| = |\{0, 1\}^A|$, it implies that $|A| < |2^A|$ also.
+
+	Therefore, $|A| < |2^A|$. $\square$
 	
 	\question{3}{Hamming Code}
 	
