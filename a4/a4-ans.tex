@@ -232,9 +232,9 @@
 	$$ B_A = \{ w\in \Sigma^* \; : \; w \in L(A) \text{ and } p \leq |w| \leq 2p\}$$
 	Then $L(A)$ is infinite if and only if $B_A \neq \emptyset$.
 	
-	We want to show that if $B_A \neq \emptyset$, then $L(A)$ is infinite. Recall the Pumping Lemma, we have $p$ states in $DFA$ to be the same $p$ in the Pumping Lemma and it always apply to all regular language $L(A)$. 
+	We want to show that if $B_A \neq \emptyset$, then $L(A)$ is infinite. Recall the Pumping Lemma, we have $p$ states in DFA to be the same $p$ in the Pumping Lemma and it always apply to all regular language $L(A)$. 
 	
-	Since $B_A$ is non-empty, there is some string $s \in B_A$. By definition of $B_A$ we have $s \in L(A)$ and $|s| \geq p$, so there exist $x,y,z$ such that $s = xyz$ and the three conditions of the Pummping Lemma hold. The first condition says that $(\forall i \geq 0)[xy^iz \in L(A)]$. Hence, $L(A)$ is infinite.
+	Since $B_A$ is non-empty, there is some string $s \in B_A$. By definition of $B_A$, we have $s \in L(A)$ and $|s| \geq p$, so there exist $x,y,z$ such that $s = xyz$ and the three conditions of the Pumping Lemma hold. The first condition says that $(\forall i \geq 0)[xy^iz \in L(A)]$. Hence, $L(A)$ is infinite.
 	
 	We also want to show that if $L(A)$ is infinite, then $B_A \neq \emptyset$. Let $s$ be a shortest string in $L(A)$ such that $|s| \geq p$. (Such an $s$ exists since $L(A)$ is infinite.) If $|s| \leq 2p$, then $s \in B_A$. 
 	
