@@ -224,7 +224,37 @@
 	Show that the following language is (Turing) decideable:
 	$$ \text{IDFA} = \{\langle M \rangle| \text{ M is a DFA and L(M) is an infinite language  } \}.$$
 	
-	{\em Proof}: We want to show that $\text{IDFA}$ is decidable. So, we will construct a TM $T$ that decides $\text{IDFA}$. For all DFAs $M$, we want $T(\langle M \rangle)$ to accepts if $L(M)$ is infinite language, else it will reject. %reading vicky's ans
+	{\em Proof}: We want to show that IDFA is decidable. The proof is by construction: So, we will construct a TM $T$ that decides IDFA. For all DFAs $M$, we want $T(\langle M \rangle)$ to accepts if $L(M)$ is infinite language, else it will reject. 
+	
+	By directly check whether it is infinite language will lead to an eternity loop that iterate to test whether $L(M)$ is an language using every $w \in \Sigma^*$. In fact, it will not halt.
+	
+	So, we want to claim that if $A$ is a DFA with $p$ states and alphabet $\Sigma$. Let
+	$$ B_A = \{ w\in \Sigma^* \; : \; w \in L(A) \text{ and } p \leq |w| \leq 2p\}$$
+	Then $L(A)$ is infinite if and only if $B_A \neq \emptyset$.
+	
+	We want to show that if $B_A \neq \emptyset$, then $L(A)$ is infinite. Recall the Pumping Lemma, we have $p$ states in $DFA$ to be the same $p$ in the Pumping Lemma and it always apply to all regular language $L(A)$. 
+	
+	Since $B_A$ is non-empty, there is some string $s \in B_A$. By definition of $B_A$ we have $s \in L(A)$ and $|s| \geq p$, so there exist $x,y,z$ such that $s = xyz$ and the three conditions of the Pummping Lemma hold. The first condition says that $(\forall i \geq 0)[xy^iz \in L(A)]$. Hence, $L(A)$ is infinite.
+	
+	We also want to show that if $L(A)$ is infinite, then $B_A \neq \emptyset$. Let $s$ be a shortest string in $L(A)$ such that $|s| \geq p$. (Such an $s$ exists since $L(A)$ is infinite.) If $|s| \leq 2p$, then $s \in B_A$. 
+	
+	Then, we want to apply the Pumping Lemma to the regular language $L(A)$. Assume for the sake of contradiction that $|s| > 2p$. Let $s = xyz$ such that the three conditions of the Pumping Lemma hold. Setting $i = 0$ in the first condition implies that $xz \in L(A)$. The third condition implies $|y| \leq p$. So, $|xz| = |s| - |y| > 2p - p = p$, meaning $xz$ is a string in $L(A)$ with length strictly greater than $p$, but is shorter than $s$. Hence, it contradicts to the assumption that $s$ was the shortest string. So, we have shown that $B_A \neq \emptyset$. 
+	
+	Therefore, we have claimed the above statement.
+	
+	Referring to our claim, this means that to test whether or not $L(A)$ is infinite, we need only test whether or not $B_A$ is empty. The latter can be done using the machine $M_{dfa}$ since $B_A$ is a finite set. We can provide the construction. 
+	%reading vicky's ans
+	
+	On input $\langle A \rangle$, where $A$ is a DFA:
+	
+	1. Let $p$ be the number of states in DFA $\langle A \rangle$ and let $\Sigma$ be the alphabet of DFA $A$. Store these variables somewhere in the tape.
+	
+	2. Repeat the following stages for each string $w \in \Sigma^*$ such that $p \leq |w| \leq 2p$:
+	
+	\tab	3. Run $M_{\text{dfa}}(\langle A, w \rangle)$ and if $M_{\text{dfa}}$, then it accepts.
+	
+	3. It rejects when nothing can be accepted.
+	
 	
 	\question{6}{Lucky 9}
 	
