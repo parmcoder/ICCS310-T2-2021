@@ -153,6 +153,8 @@
 	
 	{\em Solution}: $\beta_2 = p_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7$
 	
+	In case that $\beta_2$ is a parity bit (I am not sure if you mean $p_2$), $\beta_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7$
+	
 	\part{2} Encode the following 8-bit data: $01101010$.
 	
 	{\em Solution}: Hamming Code = $(p_1 p_2 d_1 p_4 d_2 d_3 d_4 p_8 d_5 d_6 d_7 d_8)$
@@ -201,7 +203,21 @@
 	Consider the language $L = \{w \in \{0, 1\}^{*} | \text{ w contains an equal number of 0s and 1s } \}$. Show that L is (Turing) decidable by providing a TM that decides it (a medium-level detail is preferred).
 	
 	{\em Proof}: %Find the machine! That machine count the difference between 1s and 0s
+	We’ll show that $L$ is Turing decidable. The proof is by construction: we’ll give a $TM$ $M = (Q, \Sigma, \Gamma, \delta, q_0 , q_{accept} , q_{reject})$ that decides $L$:
 	
+	On input string $w$:
+	
+	1. Sweep left to right across the tape, check whether 0 and 1 are both existed, reject if it is not.
+	
+	2. Return the head to the left-hand end of the tape then scan to the right. If the tape contains only $\texttt{\char32}$, it accepts.
+	
+	3. If in stage 2 a $0$ is found, then replace the left most $0$ with $\texttt{\char32}$. Keep scanning to the right, if there is no $1$s, it rejects.
+	
+	4. If in stage 3 a $1$ is found, then replace the left most $1$ with $\texttt{\char32}$. Then, go to stage 2.
+	
+	5. If in stage 2 a $1$ is found, then replace the left most $1$ with $\texttt{\char32}$. Keep scanning to the right, if there is no $0$s, it rejects.
+	
+	6. If in stage 5 a $0$ is found, then replace the left most $0$ with $\texttt{\char32}$. Then, go to stage 2.
 	
 	\question{5}{Infinite DFA}
 	
@@ -223,7 +239,11 @@
 	
 	Prove that $L_1$ is (Turing) decidable.
 	
-	{\em Proof}:  %Find the machine! Probably the one that find prime
+	{\em Proof}:  %Find the machine! Probably the one that find 
+	
+	I have looked up for $2^{74207281}-1$ whether it is a prime or not, and it is a prime. Here is the url, https://www.mersenne.org/primes/?press=M74207281.
+	
+	We have that 
 	
 	\part{2} Let $L_2 \subseteq \Sigma^*$ be defined as
 	$$
@@ -233,6 +253,7 @@
 	
 	
 	{\em Proof}: %Find the machine! One that keep moving until the sequence is found
+	
 	
 	\question{7}{$\beta$-reduction}
 	
