@@ -44,6 +44,7 @@
 \newcommand{\myname}{Possawat Sanorkam}
 \newcommand{\myemail}{possawat2017@hotmail.com}
 \newcommand{\myhwnum}{4}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 1pt}
@@ -88,7 +89,8 @@
 
 	{\em Proof}: We want to show that $|[0,1)| = |\mathbb{R}|$ by direct proof. Besides, we have that $|[0,1)| = |(-1,1)|$ which means we can show that $|\mathbb{R}| = |(-1,1)|$ instead. Say A and B have the same cardinality (size), denoted by $|A| = |B|$, if there exists a bijection between them. In addition, $|A|=|B|$ if and only if $|A| \leq |B|$ and $|B| \leq |A|$. 
 	
-	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f: A \rightarrow \mathbb{R}$, and $A = (-1,1)$. Then, let $f(x) = \frac{x}{1-x^2}$. This function is continuous on domain $A$ when $x \neq 1$ and $x \neq -1$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |\mathbb{R}|$ or $|\mathbb{R}| = |(-1,1)|$. Hence, $|\mathbb{R}| = |(-1,1)|$ implies that $|\mathbb{R}| = |[0,1)|$ also. Therefore, $|[0,1)| = |\mathbb{R}|$. $\square$
+	We want to show that there exist a function $f$ such that $f$ is a bijection. Let $f: A \rightarrow \mathbb{R}$, and $A = (-1,1)$. Then, let $f(x) = \frac{x}{1-x^2}$. This function is continuous on domain $A$ when $x \neq 1$ and $x \neq -1$. Let $a \in A$ and $a' \in A$. From observation, $f(a)$ is unique for any arbitrary $a$. We have that $ ( \forall a \neq a')[ f(a) \neq f(a')]$, so $f$ is injective. Let $b \in B$. From observation, every $b$ can be obtain from some $f(a)$. The upper bound of $f(x)$ is $\lim_{x \rightarrow 1} f(x) \approx \infty$ and the lower bound of $f(x)$ is $\lim_{x \rightarrow -1} f(x) \approx	 -\infty$. So, we can cover all element in $\mathbb{R}$.
+	We have that $ ( \forall b)( \exists a)[ f(a) = b]$, so $f$ is also surjective. According to the definition we stated before, $f$ is a bijective function. So, $|A| = |\mathbb{R}|$ or $|\mathbb{R}| = |(-1,1)|$. Hence, $|\mathbb{R}| = |(-1,1)|$ implies that $|\mathbb{R}| = |[0,1)|$ also. Therefore, $|[0,1)| = |\mathbb{R}|$. $\square$\\\\\\
 		
 	\question{2}{The Power Set of A } %don't delete yet:(}
 	
@@ -107,19 +109,18 @@
 	
 	\part{1} If the data bits are $d_1,d_2,d_3...d_8$ , what is $\beta_2$ in terms of $d_i$’s?
 	
-	{\em Solution}: $\beta_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7$
+	{\em Solution}: $\beta_2 = p_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7$
 	
 	\part{2} Encode the following 8-bit data: $01101010$.
 	
-	{\em Solution}: Hamming Code = $(\beta_1 \beta_2 d_1 \beta_4 d_2 d_3 d_4 \beta_8 d_5 d_6 d_7 d_8)$
+	{\em Solution}: Hamming Code = $(p_1 p_2 d_1 p_4 d_2 d_3 d_4 p_8 d_5 d_6 d_7 d_8)$
 	
 	Encode $01101010$ by adding the parity bits as followed
-	
 	\begin{eqnarray}
-	\beta_1 = d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 1 \oplus 1 &=& 1\\
-	\beta_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7  = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 1 &=& 0\\
-	\beta_4 = d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 &=& 0\\
-	\beta_8 = d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 1 \oplus 0 &=& 0
+	p_1 = d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 1 \oplus 1 &=& 1\\
+	p_2 = d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7  = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 1 &=& 0\\
+	p_4 = d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 &=& 0\\
+	p_8 = d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 1 \oplus 0 &=& 0
 	\end{eqnarray}
 	
 	Therefore, encoded bits are $1 0 0 0 110 0 1010$
@@ -127,16 +128,16 @@
 	\part{3} Assuming that at most a single single bit flip, decide the following codewords (indicate also whether there was any error):
 	
 	{\em Solution}: 
-	Hamming Code = $(\beta_1 \beta_2 d_1 \beta_4 d_2 d_3 d_4 \beta_8 d_5 d_6 d_7 d_8)$
+	Hamming Code = $(p_1 p_2 d_1 p_4 d_2 d_3 d_4 p_8 d_5 d_6 d_7 d_8)$
 	
 	(i) 010011111000
 	
-	So, $\beta_1 = 0, \beta_2 = 1, \beta_4 = 0,$and $\beta_8 = 1$.
+	So, $p_1 = 0, p_2 = 1, p_4 = 0,$and $p_8 = 1$.
 	\begin{eqnarray}
-	\beta_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 0 \oplus 1 \oplus 1 \oplus 1 \oplus 0 &=& 1\\
-	\beta_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 0 \oplus 1 \oplus 1 \oplus 0 \oplus 0 &=& 1\\
-	\beta_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 0 \oplus 1 \oplus 1\oplus 1 \oplus 0 &=& 1\\
-	\beta_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 &=& 0
+	\beta_1 = p_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 0 \oplus 1 \oplus 1 \oplus 1 \oplus 0 &=& 1\\
+	\beta_2 = p_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 0 \oplus 1 \oplus 1 \oplus 0 \oplus 0 &=& 1\\
+	\beta_4 = p_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 0 \oplus 1 \oplus 1\oplus 1 \oplus 0 &=& 1\\
+	\beta_8 = p_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 &=& 0
 	\end{eqnarray}
 	
 	Error Position is $0111_2 = 7$. Corrected Data is $010011011000$.
@@ -145,13 +146,13 @@
 	
 	So, $\beta_1 = 0, \beta_2 = 1, \beta_4 = 1,$and $\beta_8 = 1$.
 	\begin{eqnarray}
-	\beta_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 0 \oplus 0 &=& 1\\
-	\beta_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 1 \oplus 1 \oplus 0 \oplus 0 \oplus 0 &=& 1\\
-	\beta_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 0 \oplus 1\oplus 0 \oplus 0 &=& 0\\
-	\beta_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 0 \oplus 1 \oplus 0 &=& 0
+	\beta_1 = p_1 \oplus d_1 \oplus d_2 \oplus d_4 \oplus d_5 \oplus d_7 = 0 \oplus 1 \oplus 0 \oplus 0 \oplus 0 \oplus 1 &=& 0\\
+	\beta_2 = p_2 \oplus d_1 \oplus d_3 \oplus d_4 \oplus d_6 \oplus d_7 = 1 \oplus 1 \oplus 1 \oplus 0 \oplus 0 \oplus 1 &=& 0\\
+	\beta_4 = p_4 \oplus d_2 \oplus d_3 \oplus d_4 \oplus d_8 = 1 \oplus 0 \oplus 1\oplus 0 \oplus 0 &=& 0\\
+	\beta_8 = p_8 \oplus d_5 \oplus d_6 \oplus d_7 \oplus d_8 = 1 \oplus 0 \oplus 0 \oplus 1 \oplus 0 &=& 0
 	\end{eqnarray}
 	
-	Error Position is $0011_2 = 3$. Corrected Data is $010101010010$.
+	Data is already correct.
 		
 	\question{4}{Same Number of 0s and 1s}
 	
@@ -198,36 +199,66 @@
 	{\em Solution}:
 	
 	\begin{eqnarray}
-	 (\lambda z.z)(\lambda z.zz)(\lambda z.z y) &\rightarrow_\beta&  (\lambda z.zz)(\lambda z.z y)\\
-	  &\rightarrow_\beta&  (\lambda z.z y)(\lambda z.z y)\\	  
-	  &\rightarrow_\beta&  (\lambda z.z y)y\\
-	  &\rightarrow_\beta&  yy
+	 (\lambda z.z)(\lambda z.zz)(\lambda z.z y) &\rightarrow_1&  (\lambda z.zz)(\lambda z.z y)\\
+	  &\rightarrow_1&  (\lambda z.z y)(\lambda z.z y)\\	  
+	  &\rightarrow_1&  (\lambda z.z y)y\\
+	  &\rightarrow_1&  yy
 	\end{eqnarray}
 	
 	\part{2} $(((\lambda x.\lambda y.(x y))(\lambda y.y))w)$
 	
 	{\em Solution}: \begin{eqnarray}
-	((  (\lambda x.\lambda y.(x y)) (\lambda y.y) )w) &\rightarrow_\beta&  
-    (  \lambda y.(x y))w \\
-	&\rightarrow_\beta&  xw
+	((  (\lambda x.\lambda y.(x y)) (\lambda y.y) )w) 
+	&\rightarrow_1&  ((  (\lambda x.\lambda y.(x y)) (\lambda y'.y') )w) \\
+	&\rightarrow_1&  (  \lambda y.((\lambda y'.y')y)w) \\
+	&\rightarrow_1&  (  \lambda y.(y)w) \\
+	&\rightarrow_1&  w
 	\end{eqnarray}
 	
 	\question{8}{Fibonacci}
-	Using the functions we have developed (e.g., pred, if\_then\_else, mult, add, etc.), write
+	Using the functions we have developed (e.g., $\texttt{pred, if\_then\_else, mult, add}$, etc.), write
 	down an explicit $ \lambda $-term fib such that
-	$\overline{fib}$ $\overline{n} =_\beta \overline{f(n)}$.
+	$\overline{\texttt{fib} }\;\overline{n} =_\beta \overline{f(n)}$.
 	
 	%probably recursion i guess?
-	{\em Solution}: $\overline{fib}$ $\overline{n} =_\beta \overline{f(n)}$.
+	{\em Solution}:
+	Let $\texttt{fib}(n) = \texttt{plain\_fib}(\texttt{fib}, n)$ for all $n$
 	
+	Define $T = \lambda zw. z$
+	
+	We say $\texttt{iszero}$ is a function that return $T$ if the input is zero, else $F$.
+	
+	Define $\texttt{iszero} := \lambda nxy.n(\lambda z.y)x$
+	
+	Define $\texttt{or} := \lambda xy.x(T)(y)$
+	
+	Define $\texttt{plain\_fib} := \lambda fn.\texttt{if\_then\_else}
+	(\texttt{or}\; (\texttt{iszero}\;n)(\texttt{iszero}\;(\texttt{pred}\;n)))
+	(\overline{1})\\$
+	\tab[3.5cm] $(\texttt{add} (f\;\texttt{pred}\; n) (f\;\texttt{pred}\;(\texttt{pred}\;n) ))
+	$
+	\begin{eqnarray}
+	\overline{\texttt{fib} }\;\overline{n} &\rightarrow_*& (\texttt{plain\_fib} \; \overline{\texttt{fib}}) \overline{n}\\
+	&\rightarrow_*& \texttt{if\_then\_else}
+	(\texttt{or}\; (\texttt{iszero}\;\overline{n})(\texttt{iszero}\;(\texttt{pred}\;\overline{n})))
+	\end{eqnarray}
+	$\tab[5cm] (\overline{1})(\texttt{add} (\overline{\texttt{fib} }\;\texttt{pred}\; \overline{n}) (\overline{\texttt{fib} }\;\texttt{pred}\;(\texttt{pred}\;\overline{n}) ))$
+	
+	Therefore,
+	$$\overline{\texttt{fib} }\;\overline{n} = \texttt{if\_then\_else}
+	(\texttt{or}\; (\texttt{iszero}\;\overline{n})(\texttt{iszero}\;(\texttt{pred}\;\overline{n})))
+ (\overline{1})(\texttt{add} (\overline{\texttt{fib} }\;\texttt{pred}\; \overline{n}) (\overline{\texttt{fib} }\;\texttt{pred}\;(\texttt{pred}\;\overline{n}) ))$$
 	\question{9}{Power Of 2}
 
 	Implement a  $ \lambda $-term for the $pow(n) = 2^n$
 	
 	{\em Solution}: $\overline{pow}$ $\overline{n} 
-	=(\lambda z. \lambda y. (zy) \overline{n}) \overline{2}
-	=(\lambda z. \lambda y. (zy) \lambda f x. f^n x) \lambda f.\lambda x.(f (f x))
+	=  (pow$ $\overline{n}) \overline{2} 
+	=  ((\lambda p q . p q) \overline{n}) \overline{2} 
 	$
+	
+	Substitute all church numerals, we get  $\overline{pow}$ $\overline{n} =$
+	$$  ((\lambda p q . p q) \lambda f x. f^n x)) \lambda f x. f ( f x) $$
 	
 	
 \end{document}
