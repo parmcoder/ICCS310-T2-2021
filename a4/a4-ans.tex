@@ -203,7 +203,7 @@
 	Consider the language $L = \{w \in \{0, 1\}^{*} | \text{ w contains an equal number of 0s and 1s } \}$. Show that L is (Turing) decidable by providing a TM that decides it (a medium-level detail is preferred).
 	
 	{\em Proof}: %Find the machine! That machine count the difference between 1s and 0s
-	We’ll show that $L$ is Turing decidable. The proof is by construction: we’ll give a $TM$ $M = (Q, \Sigma, \Gamma, \delta, q_0 , q_{accept} , q_{reject})$ that decides $L$:
+	We will show that $L$ is Turing decidable. The proof is by construction: we will give a $TM$ $M = (Q, \Sigma, \Gamma, \delta, q_0 , q_{accept} , q_{reject})$ that decides $L$:
 	
 	On input string $w$:
 	
@@ -241,9 +241,18 @@
 	
 	{\em Proof}:  %Find the machine! Probably the one that find 
 	
-	I have looked up for $2^{74207281}-1$ whether it is a prime or not, and it is a prime. Here is the url, https://www.mersenne.org/primes/?press=M74207281.
+	We will show that $L$ is Turing decidable. The proof is by construction: we will give a $TM$ $M = (Q, \Sigma, \Gamma, \delta, q_0 , q_{accept} , q_{reject})$ that decides $L$:
 	
-	We have that 
+	On input string $w$:
+	
+	1. Perform primality test on $2^{74207281}-1$ to check whether it is a prime number or not.
+	
+	2. If $2^{74207281}-1$ is prime, it rejects.
+	
+	3. If $2^{74207281}-1$ is not prime, then check if w is $99$ or not. If it is $99$, then it accepts else it rejects. $\square$
+	
+	PS. 	
+	I have looked up for $2^{74207281}-1$ whether it is a prime or not, and it is a prime. Here is the url, https://www.mersenne.org/primes/?press=M74207281.
 	
 	\part{2} Let $L_2 \subseteq \Sigma^*$ be defined as
 	$$
@@ -253,6 +262,20 @@
 	
 	
 	{\em Proof}: %Find the machine! One that keep moving until the sequence is found
+	
+	We will show that $L$ is Turing decidable. The proof is by construction: we will give a $TM$ $M = (Q, \Sigma, \Gamma, \delta, q_0 , q_{accept} , q_{reject})$ that decides $L$:
+	
+	By the characteristic of $\pi$, since it is irrational, it has an infinite number of digits in its decimal representation, and does not settle into an infinitely repeating pattern of digits. This implies that for all $w \in L_2$, $M$ can halt and always accept any $s \in \Sigma^*$ since $\Sigma = {9}$. Besides, $\Sigma^*$ is a set of $9$s and $|s|$ is countably infinite.
+	
+	On input string $w$:
+	
+	1. Store input w in the left-most end of the tape and mark a space using $\texttt{\char32}$ to seperate between $w$ and $\pi$ value.
+	
+	2. Repeat the following stage until all stored characters are $\texttt{\char32}$. When all stored characters are $\texttt{\char32}$, it accepts.
+	
+	\tab	3. Keep listing the value of $\pi$ to the right until $9$ is found.
+	
+	\tab	4. Move the head back to the left-most end $9$ in stored $w$ and mark it $\texttt{\char32}$ $\square$
 	
 	
 	\question{7}{$\beta$-reduction}
