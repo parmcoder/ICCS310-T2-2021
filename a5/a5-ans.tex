@@ -79,54 +79,70 @@
 		
 	\question{2}{Accept vs. Reject} %don't delete yet:(}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
+	$$ \textsf{ACCEPT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that accepts input x} \} $$
 	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
+	\part{i} Prove that $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REJECT}_{\textsf{TM}} $
+	
+	{\em Proof}: 
+	
+	\part{ii}) Prove that $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $
 	
 	
 	{\em Proof}: 
 	
 	\question{3}{Reverse on TM}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
+	$$ \textsf{T} = \{\langle M \rangle | \text{ M is a TM that accepts } \textbf{rev}(w) \text{ whenever it accepts} \} $$
 	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
+	where $\textbf{rev}(w)$ is the reverse of the string w. Show that T is undecidable.
 	
 	{\em Proof}: 
 		
 	\question{4}{Undecidability}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
-	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
-	
+	\part{i} Show that 
+	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
+
+
 	{\em Proof}: 
+
+	\part{ii} Show that 
+	$$ \textsf{FINITE} = \{\langle M \rangle | \text{ M is a Turing machine and $L(M)$ is a finite set} \} $$ is undecidable
+
+
+	{\em Proof}: 
+
+	\part{iii} Show that 
+	$$ \textsf{REGULAR} = \{\langle M \rangle | \text{ M is a Turing machine and $L(M)$ is regular} \} $$
+	where $\textbf{rev}(w)$ is the reverse of the string w. Show that T is undecidable.
+
+	{\em Proof}: 
+
 	
 	\question{5}{Total Is No Harder Than Finite}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
+	Prove that 
+	$$ \textsf{TOTAL} \leq_T \textsf{FINITE} $$ is undecidable
 	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
 	
 	{\em Proof}: 
+	
+	
+	 
 	
 	
 	\question{6}{Finite Is No Harder Than Total}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
+	Prove that 
+	$$ \textsf{FINITE} \leq_T \textsf{TOTAL} $$ is undecidable
 	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
 	
 	{\em Proof}: 
 	
 	
 	\question{7}{Extra: Undecidability of Nontrivial Properties}
 	
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
-	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
-	
-	{\em Proof}: 
+	{\em Proof}: It is non trivial. How to decide on it though?
 	
 	
 \end{document}
