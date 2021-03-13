@@ -76,6 +76,38 @@
 	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
 	
 	{\em Proof}: 
+	
+	We want to show that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable by showing the contradiction.
+	
+	Assume for the sake of contradiction that the TM $W(\langle M, w\rangle)$ decides $\textsf{REJECT}_{\textsf{TM}}$.
+	
+	$$W(\langle M, w\rangle) = \begin{cases} 
+	\text{reject} & \text{ if $M$ accepts $w$} \\
+	\text{accept} & \text{ if $M$ rejects $w$} \\
+	\text{reject} & \text{ if $M$ loops on $w$}
+	\end{cases} $$
+	
+	Also, define TM $Y(\langle X\rangle)$ where $X$ is a TM. On input $\langle X\rangle$,
+	
+	1. Run $W$ on $\langle X, \langle X\rangle\rangle$.
+	
+	2. If $W$ accepts, we accept. If $W$ rejects, we rejects.
+	
+	So we have,
+	$$Y(\langle X\rangle) = \begin{cases} 
+	\text{reject} & \text{ if $X$ accepts $\langle X\rangle$} \\
+	\text{accept} & \text{ if $X$ rejects $\langle X\rangle$} \\
+	\text{reject} & \text{ if $X$ loops on $\langle X\rangle$}
+	\end{cases} $$
+	
+	Then,
+	$$Y(\langle Y\rangle) = \begin{cases} 
+	\text{reject} & \text{ if $Y$ accepts $Y$} \\
+	\text{accept} & \text{ if $Y$ rejects $Y$} \\
+	\text{reject} & \text{ if $Y$ loops on $Y$}
+	\end{cases} $$
+	
+	We have that whatever $Y$ try to decides on $\langle Y\rangle$ turns out to be that there is no certain answer. Since $Y$ cannot decides, then $W$ also cannot decides. Hence, it contradicts to our assumption that $W$ decides	$\textsf{REJECT}_{\textsf{TM}}$. Therefore, $\textsf{REJECT}_{\textsf{TM}}$ is undecidable. $\square$
 		
 	\question{2}{Accept vs. Reject} %don't delete yet:(}
 	
@@ -85,10 +117,34 @@
 	
 	{\em Proof}: 
 	
+	Suppose that TM $M_{\textsf{REJECT}}$ decides $\textsf{REJECT}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{REJECT}}$.
+	
+	Given $\langle M, w \rangle$ as input:
+	
+	1. Make TM $M^\prime$ from $M$ by reversing the accept and reject states.
+	
+	2. Run $M_{\textsf{REJECT}}$ with $\langle M^\prime, w \rangle$.
+	
+	3. If $M_{\textsf{REJECT}}$ rejects, we accept. If $M_{\textsf{REJECT}}$ rejects, we reject.
+	
+	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{REJECT}}$. Therefore, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REJECT}_{\textsf{TM}} $. $\square$
+	
 	\part{ii}) Prove that $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $
 	
 	
 	{\em Proof}: 
+	
+	Suppose that TM $M_{\textsf{REJECT}}$ decides $\textsf{REJECT}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{REJECT}_{\textsf{TM}}$ using $M_{\textsf{ACCEPT}}$.
+	
+	Given $\langle M, w \rangle$ as input:
+	
+	1. Make TM $M^\prime$ from $M$ by reversing the accept and reject states.
+	
+	2. Run $M_{\textsf{ACCEPT}}$ with $\langle M^\prime, w \rangle$.
+	
+	3. If $M_{\textsf{ACCEPT}}$ accepts, we accept. If $M_{\textsf{ACCEPT}}$ rejects, we reject.
+	
+	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. Hence, $M_{\textsf{REJECT}}$ can correctly decide $\textsf{REJECT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{ACCEPT}}$. Therefore, $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $. $\square$
 	
 	\question{3}{Reverse on TM}
 	
@@ -105,7 +161,9 @@
 
 
 	{\em Proof}: 
+	
 
+	
 	\part{ii} Show that 
 	$$ \textsf{FINITE} = \{\langle M \rangle | \text{ M is a Turing machine and $L(M)$ is a finite set} \} $$ is undecidable
 
