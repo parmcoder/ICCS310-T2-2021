@@ -72,90 +72,48 @@
 	
 	\question{1}{The Meaning of Things} %don't delete yet:(}
 	
-	\part{1} Class NP is the problems that can be solved within polynomial time using a NFA. Besides, we can solve it in polynomial time using a machine that compute all possibilities at once.
+	\part{1} Class NP is the problems that can be verify within polynomial time. Basically, there is no efficient algorithm to solve the problem. But, we can verify it pretty quick.
 	
-	\part{2} Show that 
+	\part{2} Without loss of generality, we can assume that there is a certificate and a verifier that check the certificate to verify whether it is a "yes" or "no" given that the verifier answer within polynomial time.
 	
-	\part{3} Show that 
+	\part{3} NP-complete is the problem that can only be solved within polynomial time using a NFA. Besides, we can solve it in polynomial time using a machine that compute all possibilities at once.
 	
-	\part{4} Show that 
+	\part{4} We can find a problem that is NP, then we find a polynomial time algorithm to change the solution from one problem to the problem that we want to show that it is NP-complete.
 		
 	\question{2}{Closure of NP} %don't delete yet:(}
 	
-	$$ \textsf{ACCEPT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that accepts input x} \} $$
 	
-	\part{i} Prove that $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REJECT}_{\textsf{TM}} $
-	
-	{\em Proof}: 
-	
-	Suppose that TM $M_{\textsf{REJECT}}$ decides $\textsf{REJECT}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{REJECT}}$.
-	
-	Given $\langle M, w \rangle$ as input:
-	
-	1. Make TM $M^\prime$ from $M$ by reversing the accept and reject states.
-	
-	2. Run $M_{\textsf{REJECT}}$ with $\langle M^\prime, w \rangle$.
-	
-	3. If $M_{\textsf{REJECT}}$ accepts, we accept. If $M_{\textsf{REJECT}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. 
-	
-	$$ M_{\textsf{REJECT}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{REJECT}}$. Therefore, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REJECT}_{\textsf{TM}} $. $\square$
-	
-	\part{ii}) Prove that $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $
-	
+	\part{i} Disprove that $A \cap B$ must be in $\textsf{NP}$
 	
 	{\em Proof}: 
 	
-	Suppose that TM $M_{\textsf{REJECT}}$ decides $\textsf{REJECT}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{REJECT}_{\textsf{TM}}$ using $M_{\textsf{ACCEPT}}$.
+	We want to show that $A \cap B$ must not be in $\textsf{NP}$. Let $a \in A$ and $b \in B$. We were given that $A \in \textsf{NP}$ and $B \in \textsf{NP}$. So, $(\forall a \in A) [a \in \textsf{NP}]$ and $(\forall b \in B) [b \in \textsf{NP}]$. However, if $(\forall a \in A) [a \notin B]$, then we got two disjoint sets of $A$ and $B$. Then, $A \cap B = \emptyset$. We have that $\emptyset$ is a special language that is undecidable and there is no machine that can decide it, because we will not be able to find "yes" instance from nothingness. Therefore, $A \cap B$ cannot be in $\textsf{NP}$. $\square$
 	
-	Given $\langle M, w \rangle$ as input:
+	\part{ii} Disprove that $A \cup B$ must be in $\textsf{NP}$
 	
-	1. Make TM $M^\prime$ from $M$ by reversing the accept and reject states.
+	{\em Proof}: 
 	
-	2. Run $M_{\textsf{ACCEPT}}$ with $\langle M^\prime, w \rangle$.
-	
-	3. If $M_{\textsf{ACCEPT}}$ accepts, we accept. If $M_{\textsf{ACCEPT}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. 
-	
-	$$ M_{\textsf{REJECT}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	Hence, $M_{\textsf{REJECT}}$ can correctly decide $\textsf{REJECT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{ACCEPT}}$. Therefore, $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $. $\square$
+	We want to show that $A \cup B$ must not be in $\textsf{NP}$. Let $a \in A$ and $b \in B$. We were given that $A \in \textsf{NP}$ and $B \in \textsf{NP}$. So, $(\forall a \in A) [a \in \textsf{NP}]$ and $(\forall b \in B) [b \in \textsf{NP}]$. However, if $(\forall a \in A) [a \notin B]$, then we got two disjoint sets of $A$ and $B$. Then, $A \cup B = \Sigma^*$. We have that $\Sigma^*$ is a special language that is undecidable and there is no machine that can decide it, because we will not be able to find "no" instance from everything. Therefore, $A \cup B$ cannot be in $\textsf{NP}$. $\square$
 	
 	\question{3}{This is NP}
 	
-	$$ \textsf{T} = \{\langle M \rangle | \text{ M is a TM that accepts } \textbf{rev}(w) \text{ whenever it accepts } w\} $$
+	Prove that $\textsf{5COLOR} \in \textsf{NP}$
 	
-	where $\textbf{rev}(w)$ is the reverse of the string w. Show that $\textsf{T}$ is undecidable.
+	{\em Proof}: 
 	
-	{\em Proof}: ($\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{T}_{\textsf{TM}} $)
+	We want to show that $\textsf{5COLOR} \in \textsf{NP}$. So, we want to claim that there exist a polynomially-bounded certificate and a polynomially-bounded verifier.
 	
-	Suppose that TM $M_{\textsf{T}}$ decides $\textsf{T}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{T}}$.
+	Claim: There exists such polynomially-bounded certificate.
 	
-	On input $\langle M,w \rangle$:
+	We claim that the certificate that is a yes instance is the list of vertices describing the color in which we colored them. The length of such a certificate is the same as the number of vertices given. So, we got the certificate.
 	
-	1. Make TM $M^\prime$ that accepts a string $w$, then it also accepts $w^R$. On input $x$:
+	Claim: There exists such polynomially-bounded verifier.
 	
-	1.1 If $x = 01$, then accept $x$.
+	We claim that the verifier that verify the certificate will check through the list of vertices describing the color in which we colored them. If there exists an edge that contain same color on both ends, we have that the certificate is a "no" instance. Otherwise, it is a "yes" instance. The time complexity of this algorithm is $O(|E|)$ where $E$ is the list of edges. So, we got the verifier.
 	
-	1.2 If $x \neq 01$, then run $M$ on input $w$ and accept if $M$ accepts.
+	Hence, we showed that there exist a polynomially-bounded certificate and a polynomially-bounded verifier. Therefore, $\textsf{5COLOR} \in \textsf{NP}$.
 	
-	2. Run $M_{\textsf{T}}$ on $\langle M^\prime,w \rangle$.
 	
-	3. If $M_{\textsf{T}}$ accepts, we accept. If $M_{\textsf{T}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$.
-	
-	$$ M_{\textsf{T}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	From observation, if $M$ accepts $w$, then $M^\prime$ accepts every string, so $\langle M^\prime \rangle \in \textsf{T}_{\textsf{TM}}$. If $M$ does not accept $w$, then only $01$ will be accepted which means $\langle M^\prime \rangle \notin \textsf{T}_{\textsf{TM}}$
-	
-	Then, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{T}}$. 
-	
-	So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{T}_{\textsf{TM}} $. Therefore, $\textsf{T}$ is undecidable. $\square$
 		
 	\question{4}{NP-Complete}
 	
