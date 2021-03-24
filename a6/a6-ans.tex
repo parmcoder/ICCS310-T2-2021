@@ -115,18 +115,27 @@
 		
 	\question{4}{NP-Complete}
 	
-	\part{1} Show that 
-	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
+	\part{1} Prove that $\texttt{HAM-PATH}$ is NP-complete by showing a reduction $\texttt{HAM-CYCLE} \leq_m \texttt{HAM-PATH}$.
 
-
-	{\em Proof}:  
+	{\em Proof}:  We want to show that $\texttt{HAM-PATH}$ is NP-complete. So, there exist a polynomially-bounded reduction from $\texttt{HAM-PATH}$ to $\texttt{HAM-CYCLE}$. 
+	
+	Let $G$ be the directed graph from $\texttt{HAM-CYCLE}$. We solve $\texttt{HAM-PATH}$ given $G$ by trying all possibilities and verify whether $G$ is an acceptable certificate by simply perform DFS and check if we can find the a path starting at s and ending at t that visits each and every vertex exactly once. We have $G^\prime$ from $\texttt{HAM-PATH}$ which is a graph with denoted order that would be a path starting at s and ending at t that visits each and every vertex exactly once if we do the DFS. So, we can convert $G^\prime$ back to $\texttt{HAM-CYCLE}$. Basically, we get $G^{\prime \prime}$ by simply perform a DFS on $G^\prime$ starting from s and label each node by the traversal order, then we have that $\texttt{HAM-CYCLE}$ can be solved from $G^{\prime \prime}$.
+	
+	This reduction takes $O(|V|+|E|)$ where $V$ is the vertices and $E$ is the edges of $G$.
+	
+	Hence, $\texttt{HAM-CYCLE} \leq_m \texttt{HAM-PATH}$. Therefore, $\texttt{HAM-PATH}$ is NP-complete. $\square$
 
 	
-	\part{2} Show that 
-	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
+	\part{2} Prove that $\texttt{UNDIRECTED-HAM-PATH}$ is NP-complete by showing a reduction $\texttt{HAM-PATH} \leq_m \texttt{UNDIRECTED-HAM-PATH}$.
 	
 	
-	{\em Proof}: 
+	{\em Proof}: We want to show that $\texttt{UNDIRECTED-HAM-PATH}$ is NP-complete. So, there exist a polynomially-bounded reduction from $\texttt{HAM-PATH}$ to $\texttt{UNDIRECTED-HAM-PATH}$. 
+	
+	Let $G$ be the directed graph from $\texttt{HAM-PATH}$. We solve $\texttt{UNDIRECTED-HAM-PATH}$ given $G$ by first listing all the directed edges from $G$ and recreate a new undirected graph $G^\prime$ out of $g$ by duplicating each vertex into three vertices, first vertex represent the node that is directed to, second vertex is the vertex that direct edged to some vertices, and third vertex will help with redirecting the edges later, then we build it according to the edges from $G$. Then, trying all possibilities and verify whether $G$ is an acceptable certificate by simply perform DFS and check if we can find the a path starting at s and ending at t that visits each and every vertex exactly once. We have $G^\prime$ from $\texttt{UNDIRECTED-HAM-PATH}$ which is a graph with denoted order that would be a path starting at s and ending at t that visits each and every vertex exactly once if we do the DFS. So, we can convert $G^\prime$ back to $\texttt{HAM-PATH}$. Basically, we get $G^{\prime \prime}$ by simply combine the separated vertices into one node and recreate an undirected graph from the edges from $G^\prime$. Then, run a DFS on $G^\prime$ starting from s, label each edge by the traversal order, then we have that $\texttt{HAM-PATH}$ can be solved from $G^{\prime \prime}$.
+	
+	This reduction takes $O(|V|+|E|)$ where $V$ is the vertices and $E$ is the edges of $G$.
+	
+	Therefore, $\texttt{HAM-PATH} \leq_m \texttt{UNDIRECTED-HAM-PATH}$. $\square$
 	
 	\question{5}{Silver Lining If P = NP}
 	
@@ -152,5 +161,12 @@
 	
 	Therefore, if $\textsf{P} = \textsf{NP}$, then $\textsf{SPC} \in \textsf{P}$. $\square$
 	
+	\question{6}{ Longest-probe Bound For Hashing}
+	
+	At some point, we have to extend the hash table.
+	
+	\question{7}{ Prime Density}
+	
+	Too difficult.
 	
 \end{document}
