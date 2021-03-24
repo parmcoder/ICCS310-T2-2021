@@ -45,7 +45,7 @@
 
 \newcommand{\myname}{Possawat Sanorkam}
 \newcommand{\myemail}{possawat2017@hotmail.com}
-\newcommand{\myhwnum}{5}
+\newcommand{\myhwnum}{6}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \setlength{\parindent}{0pt}
@@ -70,48 +70,17 @@
 		\today \\
 	\end{center}
 	
-	\question{1}{Reject TM} %don't delete yet:(}
-	$$ \textsf{REJECT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that rejects input} \} $$
+	\question{1}{The Meaning of Things} %don't delete yet:(}
 	
-	Show directly (i.e., without resorting to reduction) that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable.
+	\part{1} Class NP is the problems that can be solved within polynomial time using a NFA. Besides, we can solve it in polynomial time using a machine that compute all possibilities at once.
 	
-	{\em Proof}: 
+	\part{2} Show that 
 	
-	We want to show that $\textsf{REJECT}_{\textsf{TM}}$ is undecidable by showing the contradiction.
+	\part{3} Show that 
 	
-	Assume for the sake of contradiction that the TM $M_{\textsf{REJECT}}$ decides $\textsf{REJECT}_{\textsf{TM}}$.
-	
-	On input $\langle M, w\rangle$:
-	
-	$$M_{\textsf{REJECT}} = \begin{cases} 
-	\text{reject} & \text{ if $M$ accepts $w$} \\
-	\text{accept} & \text{ if $M$ rejects $w$} \\
-	\text{reject} & \text{ if $M$ loops on $w$}
-	\end{cases} $$
-	
-	Also, define TM $Y(\langle X\rangle)$ where $X$ is a TM. On input $\langle X\rangle$,
-	
-	1. Run $M_{\textsf{REJECT}}$ on $\langle X, \langle X\rangle\rangle$.
-	
-	2. If $M_{\textsf{REJECT}}$ accepts, we accept. If $M_{\textsf{REJECT}}$ rejects, we rejects.
-	
-	So we have,
-	$$Y(\langle X\rangle) = \begin{cases} 
-	\text{reject} & \text{ if $X$ accepts $\langle X\rangle$} \\
-	\text{accept} & \text{ if $X$ rejects $\langle X\rangle$} \\
-	\text{reject} & \text{ if $X$ loops on $\langle X\rangle$}
-	\end{cases} $$
-	
-	Then,
-	$$Y(\langle Y\rangle) = \begin{cases} 
-	\text{reject} & \text{ if $Y$ accepts $Y$} \\
-	\text{accept} & \text{ if $Y$ rejects $Y$} \\
-	\text{reject} & \text{ if $Y$ loops on $Y$}
-	\end{cases} $$
-	
-	We have that whatever $Y$ try to decides on $\langle Y\rangle$ turns out to be that there is no certain answer and possibly failed to predict the outcome. Since $Y$ cannot decides, then $W$ also cannot decides. Hence, it contradicts to our assumption that $M_{\textsf{REJECT}}$ decides	$\textsf{REJECT}_{\textsf{TM}}$. Therefore, $\textsf{REJECT}_{\textsf{TM}}$ is undecidable. $\square$
+	\part{4} Show that 
 		
-	\question{2}{Accept vs. Reject} %don't delete yet:(}
+	\question{2}{Closure of NP} %don't delete yet:(}
 	
 	$$ \textsf{ACCEPT}_{\textsf{TM}} = \{\langle M , x \rangle | \text{ M is a TM that accepts input x} \} $$
 	
@@ -156,7 +125,7 @@
 	
 	Hence, $M_{\textsf{REJECT}}$ can correctly decide $\textsf{REJECT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{ACCEPT}}$. Therefore, $\textsf{REJECT}_{\textsf{TM}} \leq \textsf{ACCEPT}_{\textsf{TM}} $. $\square$
 	
-	\question{3}{Reverse on TM}
+	\question{3}{This is NP}
 	
 	$$ \textsf{T} = \{\langle M \rangle | \text{ M is a TM that accepts } \textbf{rev}(w) \text{ whenever it accepts } w\} $$
 	
@@ -188,7 +157,7 @@
 	
 	So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{T}_{\textsf{TM}} $. Therefore, $\textsf{T}$ is undecidable. $\square$
 		
-	\question{4}{Undecidability}
+	\question{4}{NP-Complete}
 	
 	\part{i} Show that 
 	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
@@ -260,7 +229,7 @@
 	
 	Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{REGULAR}}$. So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $. Therefore, $\textsf{REGULAR}$ is undecidable. $\square$
 	
-	\question{5}{Total Is No Harder Than Finite}
+	\question{5}{Silver Lining If P = NP}
 	
 	Prove that 
 	$$ \textsf{TOTAL} \leq_T \textsf{FINITE} $$
@@ -279,29 +248,6 @@
 	Refer to the fact that $M_{\textsf{FINITE}}$ can determine whether $M$ has finite set of $L(M)$ or not, $M$ will halt on every input only if $L(M)$ is a finite set. If $L(M)$ is not a finite set, we would not be able to determine that it will halt on every input since there would be at least one input that would not halt.
 	
 	Hence, $M_{\textsf{TOTAL}}$ can correctly decide $\textsf{TOTAL}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{FINITE}}$. Therefore, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $. $\square$
-	
-	\question{6}{Finite Is No Harder Than Total}
-	
-	Prove that 
-	$$ \textsf{FINITE} \leq_T \textsf{TOTAL} $$
-	
-	{\em Proof}: 
-	
-	Suppose that TM $M_{\textsf{TOTAL}}$ decides $\textsf{TOTAL}_{\textsf{TM}}$ and TM $M_{\textsf{FINITE}}$ decides $\textsf{FINITE}_{\textsf{TM}}$, we want to show how to decide $\textsf{FINITE}_{\textsf{TM}}$ using $M_{\textsf{TOTAL}}$.
-	
-	Given $\langle M \rangle$ as input:
-	
-	1. Run $M_{\textsf{TOTAL}}$ on $\langle M \rangle$.
-	
-	2. If $M_{\textsf{TOTAL}}$ accepts, we accept. If $M_{\textsf{TOTAL}}$ rejects, we rejects.
-	
-	Refer to the fact that $M_{\textsf{TOTAL}}$ can determine whether $M$ halt on every input or not, $L(M)$ has to be finite set if $M$ halt on every input. If $M$ does not halt on every input, we can tell that $L(M)$ is not finite set since there would be another input to be execute.
-	
-	Hence, $M_{\textsf{TOTAL}}$ can correctly decide $\textsf{TOTAL}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{FINITE}}$. Therefore, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $. $\square$
-	
-	\question{7}{Extra: Undecidability of Nontrivial Properties}
-	
-	{\em Proof}: It is non trivial. How to decide on it though?
 	
 	
 \end{document}
