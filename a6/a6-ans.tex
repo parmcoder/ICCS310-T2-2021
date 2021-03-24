@@ -112,100 +112,45 @@
 	We claim that the verifier that verify the certificate will check through the list of vertices describing the color in which we colored them. If there exists an edge that contain same color on both ends, we have that the certificate is a "no" instance. Otherwise, it is a "yes" instance. The time complexity of this algorithm is $O(|E|)$ where $E$ is the list of edges. So, we got the verifier.
 	
 	Hence, we showed that there exist a polynomially-bounded certificate and a polynomially-bounded verifier. Therefore, $\textsf{5COLOR} \in \textsf{NP}$.
-	
-	
 		
 	\question{4}{NP-Complete}
 	
-	\part{i} Show that 
+	\part{1} Show that 
 	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
 
 
-	{\em Proof}:  ($\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{TOTAL}_{\textsf{TM}} $)
-	
-	Suppose that TM $M_{\textsf{TOTAL}}$ decides $\textsf{TOTAL}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{TOTAL}}$.
-	
-	Given $\langle M, w \rangle$ as input:
-	
-	1. Make TM $M^\prime$ from $M$ where if $M$ accepts, we accept and enter loops when $M$ rejects.
-	
-	2. Run $M_{\textsf{TOTAL}}$ with $\langle M^\prime, w \rangle$.
-	
-	3. If $M_{\textsf{TOTAL}}$ accepts, we accept. If $M_{\textsf{TOTAL}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. 
-	
-	$$ M_{\textsf{TOTAL}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{TOTAL}}$. So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{TOTAL}_{\textsf{TM}} $. Therefore, $\textsf{TOTAL}$ is undecidable. $\square$
+	{\em Proof}:  
 
 	
-	\part{ii} Show that 
-	$$ \textsf{FINITE} = \{\langle M \rangle | \text{ M is a Turing machine and $L(M)$ is a finite set} \} $$ is undecidable
-
-	{\em Proof}: ($\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{FINITE}_{\textsf{TM}} $)
+	\part{2} Show that 
+	$$ \textsf{TOTAL} = \{\langle M \rangle | \text{ M is a Turing machine that halts on every input} \} $$ is undecidable
 	
-	Suppose that TM $M_{\textsf{FINITE}}$ decides $\textsf{FINITE}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{FINITE}}$.
-	
-	Given $\langle M, w \rangle$ as input:
-	
-	1. Make TM $M^\prime$ from $M$ where if $M$ accepts, we accept and enter loops when $M$ rejects.
-	
-	2. Run $M_{\textsf{FINITE}}$ with $\langle M^\prime, w \rangle$.
-	
-	3. If $M_{\textsf{FINITE}}$ accepts, we accept. If $M_{\textsf{FINITE}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. 
-	
-	$$ M_{\textsf{FINITE}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{FINITE}}$. So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{FINITE}_{\textsf{TM}} $. Therefore, $\textsf{FINITE}$ is undecidable. $\square$
-
-	\part{iii} Show that 
-	$$ \textsf{REGULAR} = \{\langle M \rangle | \text{ M is a Turing machine and $L(M)$ is regular} \} $$ is undecidable
-
-
-	{\em Proof}: ($\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $)
-
-	Suppose that TM $M_{\textsf{REGULAR}}$ decides $\textsf{REGULAR}_{\textsf{TM}}$ and TM $M_{\textsf{ACCEPT}}$ decides $\textsf{ACCEPT}_{\textsf{TM}}$, we want to show how to decide $\textsf{ACCEPT}_{\textsf{TM}}$ using $M_{\textsf{REGULAR}}$.
-	
-	Given $\langle M, w \rangle$ as input:
-	
-	1. Make TM $M^\prime$ from $M$. On input $x$:
-	
-	1.1 If $x$ has the form $0^n1^n$, accepts.
-	
-	1.2 If $x$ does not have the form $0^n1^n$, run $M$ on input $w$ and accept if $M$ accepts $w$.
-	
-	2. Run $M_{\textsf{REGULAR}}$ with $\langle M^\prime, w \rangle$.
-	
-	3. If $M_{\textsf{REGULAR}}$ accepts, we accept. If $M_{\textsf{REGULAR}}$ rejects, we reject.
-	
-	Notice that this mechanism accepts if and only if $M$ accepts $w$ and rejects if and only if $M^\prime$ rejects $w$. 
-	
-	$$ M_{\textsf{REGULAR}} \text{ accepts }\langle M^\prime,w \rangle \iff M_{\textsf{ACCEPT}} \text{ accepts } \langle M,w\rangle $$
-	
-	Hence, $M_{\textsf{ACCEPT}}$ can correctly decide $\textsf{ACCEPT}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{REGULAR}}$. So, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $. Therefore, $\textsf{REGULAR}$ is undecidable. $\square$
-	
-	\question{5}{Silver Lining If P = NP}
-	
-	Prove that 
-	$$ \textsf{TOTAL} \leq_T \textsf{FINITE} $$
 	
 	{\em Proof}: 
 	
-	Suppose that TM $M_{\textsf{TOTAL}}$ decides $\textsf{TOTAL}_{\textsf{TM}}$ and TM $M_{\textsf{FINITE}}$ decides $\textsf{FINITE}_{\textsf{TM}}$, we want to show how to decide $\textsf{TOTAL}_{\textsf{TM}}$ using $M_{\textsf{FINITE}}$.
+	\question{5}{Silver Lining If P = NP}
 	
-	Given $\langle M \rangle$ as input:
+	Prove that if $\textsf{P} = \textsf{NP}$, then $\textsf{SPC} \in \textsf{P}$
 	
+	{\em Proof}: 
 	
-	1. Run $M_{\textsf{FINITE}}$ on $\langle M \rangle$.
+	Suppose that $\textsf{P} = \textsf{NP}$, then $\textsf{NP} = \textsf{coNP}$. Let $\overline{\textsf{SPC}}$ be a problem to check whether C is not the smallest-possible circuit with the exact same behavior as C. We want to show that $\overline{\textsf{SPC}}= \textsf{coNP}$.
 	
-	2. If $M_{\textsf{FINITE}}$ accepts, we accept. If $M_{\textsf{FINITE}}$ rejects, we rejects.
-	 
-	Refer to the fact that $M_{\textsf{FINITE}}$ can determine whether $M$ has finite set of $L(M)$ or not, $M$ will halt on every input only if $L(M)$ is a finite set. If $L(M)$ is not a finite set, we would not be able to determine that it will halt on every input since there would be at least one input that would not halt.
+	We want to show that $\overline{\textsf{SPC}}= \textsf{coNP}$. So, we want to claim that there exist a polynomially-bounded certificate and a polynomially-bounded verifier.
 	
-	Hence, $M_{\textsf{TOTAL}}$ can correctly decide $\textsf{TOTAL}_{\textsf{TM}}$ provided that there is a TM $M_{\textsf{FINITE}}$. Therefore, $\textsf{ACCEPT}_{\textsf{TM}} \leq \textsf{REGULAR}_{\textsf{TM}} $. $\square$
+	Claim: There exists such polynomially-bounded certificate.
+	
+	We claim that the certificate that is a "yes" instance is the circuit smaller gates than C and input values. The length of such a certificate is the less than the number of gates in C. So, we got the certificate.
+	
+	Claim: There exists such polynomially-bounded verifier.
+	
+	We claim that the verifier that verify the certificate will run the circuit. If the  output is the same to C, it is "yes" instance. Otherwise, it is a "no" instance. The time complexity of this algorithm is $O(n)$ where $n$ is the size of input values. So, we got the verifier.
+	
+	Hence, we showed that there exist a polynomially-bounded certificate and a polynomially-bounded verifier. Therefore, $\overline{\textsf{SPC}}= \textsf{coNP}$.
+	
+	Hence, if $\overline{\textsf{SPC}}= \textsf{coNP}$, then $\textsf{SPC}= \textsf{NP}$ because $\textsf{P} = \textsf{NP}$ and $\textsf{P} = \textsf{coNP}$. 
+	
+	Therefore, if $\textsf{P} = \textsf{NP}$, then $\textsf{SPC} \in \textsf{P}$. $\square$
 	
 	
 \end{document}
