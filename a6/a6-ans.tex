@@ -83,17 +83,47 @@
 	\question{2}{Closure of NP} %don't delete yet:(}
 	
 	
-	\part{i} Disprove that $A \cap B$ must be in $\textsf{NP}$
+	\part{i} Prove that $A \cap B$ must be in $\textsf{NP}$
 	
 	{\em Proof}: 
 	
-	We want to show that $A \cap B$ must not be in $\textsf{NP}$. Let $a \in A$ and $b \in B$. We were given that $A \in \textsf{NP}$ and $B \in \textsf{NP}$. So, $(\forall a \in A) [a \in \textsf{NP}]$ and $(\forall b \in B) [b \in \textsf{NP}]$. However, if $(\forall a \in A) [a \notin B]$, then we got two disjoint sets of $A$ and $B$. Then, $A \cap B = \emptyset$. We have that $\emptyset$ is a special language that is undecidable and there is no machine that can decide it, because we will not be able to find "yes" instance from nothingness. Therefore, $A \cap B$ cannot be in $\textsf{NP}$. $\square$
+	We want to show that $A \cap B$ must be in $\textsf{NP}$. Given that $A \in \textsf{NP} $ and $B \in \textsf{NP}$, then we have $M_A$ and $M_B$ which are nondeterministic poly-time deciders for $A$ and $B$. $M_A$ runs in nondeterministic time $O(n^k)$ and $M_B$ runs in nondeterministic time $O(n^l)$ We want to show that there is a nondeterministic poly-time decider $M$ such that $L(M) = A \cap B$. 
 	
-	\part{ii} Disprove that $A \cup B$ must be in $\textsf{NP}$
+	The construction of $M$ is as follow :
+	
+	Given $\langle w \rangle$ as input:
+	
+	1. Run $M_A$ on $w$. If $M_A$ rejects, then we reject.
+	
+	2. Else run $M_B$ on $w$. If $M_B$ rejects, then we reject.
+	
+	3. Else accept.
+	
+	From observation, the longest branch in any computation tree on input w of length n is $O(n^{max\{k,l\}})$. So, $M$ is poly-time nondeterministic decider for $A \cap B$.
+	
+	Therefore, $A \cap B$ must be in $\textsf{NP}$.
+	 $\square$
+	
+	\part{ii} Prove that $A \cup B$ must be in $\textsf{NP}$
 	
 	{\em Proof}: 
 	
-	We want to show that $A \cup B$ must not be in $\textsf{NP}$. Let $a \in A$ and $b \in B$. We were given that $A \in \textsf{NP}$ and $B \in \textsf{NP}$. So, $(\forall a \in A) [a \in \textsf{NP}]$ and $(\forall b \in B) [b \in \textsf{NP}]$. However, if $(\forall a \in A) [a \notin B]$, then we got two disjoint sets of $A$ and $B$. Then, $A \cup B = \Sigma^*$. We have that $\Sigma^*$ is a special language that is undecidable and there is no machine that can decide it, because we will not be able to find "no" instance from everything. Therefore, $A \cup B$ cannot be in $\textsf{NP}$. $\square$
+	We want to show that $A \cup B$ must be in $\textsf{NP}$. Given that $A \in \textsf{NP} $ and $B \in \textsf{NP}$, then we have $M_A$ and $M_B$ which are nondeterministic poly-time deciders for $A$ and $B$. $M_A$ runs in nondeterministic time $O(n^k)$ and $M_B$ runs in nondeterministic time $O(n^l)$ We want to show that there is a nondeterministic poly-time decider $M$ such that $L(M) = A \cup B$. 
+	
+	The construction of $M$ is as follow :
+	
+	Given $\langle w \rangle$ as input:
+	
+	1. Run $M_A$ on $w$. If $M_A$ accepted, then we accept.
+	
+	2. Else run $M_B$ on $w$. If $M_B$ accepted, then we accept.
+	
+	3. Else reject.
+	
+	From observation, the longest branch in any computation tree on input w of length n is $O(n^{max\{k,l\}})$. So, $M$ is poly-time nondeterministic decider for $A \cap B$.
+	
+	Therefore, $A \cup B$ must be in $\textsf{NP}$.
+	$\square$
 	
 	\question{3}{This is NP}
 	
